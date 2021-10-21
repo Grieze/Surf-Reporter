@@ -54,10 +54,12 @@ axios(url).then(response => {
           'Average Wave Period (APD)'      : $('table.dataTable:nth-child(7) > tbody:nth-child(2) > tr:nth-child(' + i + ') > td:nth-child(12)').text(),
       }
     }
-    convertor("currWindInfo", currWindInfo);
-    convertor("histWindInfo", histWindInfo);
-    convertor("currSwellInfo", currSwellInfo);
-    convertor("histSwellInfo", histSwellInfo);
+    const data = {... currWindInfo, currSwellInfo, histWindInfo, histSwellInfo};
+    return data;
+    // convertor("currWindInfo", currWindInfo);
+    // convertor("histWindInfo", histWindInfo);
+    // convertor("currSwellInfo", currSwellInfo);
+    // convertor("histSwellInfo", histSwellInfo);
   }).catch(console.error);
 
   // convert JSON object to string
@@ -71,3 +73,40 @@ axios(url).then(response => {
         console.log(file + " was saved.");
     });
   }
+
+
+  /* 
+  server.js
+  const express = require('express');
+
+  const app = express();
+  const port = '6969';
+  const message = 'nice';
+
+  app.get('/', (req, res) => {
+      console.log('User made a get request to "/"', req);
+      res.send(message)
+  })
+  app.listen(port, () => {
+      console.log(`Example app listening at http://localhost:${port}`);
+  })
+
+  index.js
+  document.addEventListener("DOMContentLoaded", ()=> {
+    const rootDiv = document.getElementById('6969');
+
+    fetch('http://localhost:6969/endpoint').then(res => res.text()).then(data => rootDiv.innerText = `Aaron... pizdets is not ${data}`);
+  })
+
+  index.html
+  <head>
+      <script src="index.js"></script>
+  </head>
+
+  <body>
+      <div id="6969"></div>
+  </body>
+
+  "cors": "^2.8.5",
+    "express": "^4.17.1"
+  */
