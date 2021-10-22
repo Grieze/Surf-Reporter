@@ -1,7 +1,10 @@
-// import webscraper from "webscraper/dataScraperAPI.js"
+import datascraper from "./webscraper/dataScraperAPI.js"
 
 // const express = require('express');
 import express from "express";
+
+datascraper();
+
 
 const app = express();
 const port = '8000';
