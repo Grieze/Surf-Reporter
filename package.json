@@ -19,8 +19,9 @@
   },
   "homepage": "https://github.com/Grieze/Surf-Reporter#readme",
   "dependencies": {
+    "axios": "^0.23.0",
+    "cheerio": "^1.0.0-rc.10",
     "cors": "^2.8.5",
     "express": "^4.17.1"
-  },
-  "type": "module"
+  }
 }
