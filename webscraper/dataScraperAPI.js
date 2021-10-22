@@ -1,14 +1,14 @@
-export default function datascraper() {
+function datascraper() {
   // objects to store the data in
   let currWindInfo = {};
   let histWindInfo = {};
   let currSwellInfo = {};
   let histSwellInfo = {};
 
-  import axios from "axios";
-  import cheerio from "cheerio";
-  // const axios = require("axios");
-  // const cheerio = require("cheerio")
+  // import axios from "axios";
+  // import cheerio from "cheerio";
+  const axios = require("axios");
+  const cheerio = require("cheerio")
   const url = 'https://www.ndbc.noaa.gov/station_page.php?station=44065';
   axios(url).then(response => {
       const html = response.data;
@@ -60,6 +60,9 @@ export default function datascraper() {
       return data;
     }).catch(console.error);
 }
+
+// Testing by invoking the function
+datascraper();
 
   // convert JSON object to string
   // function convertor(filename, obj) {
