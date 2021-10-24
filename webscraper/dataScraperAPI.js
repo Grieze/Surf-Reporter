@@ -1,39 +1,39 @@
-function datascraper() {
+// const { data } = require("cheerio/lib/api/attributes");
+let info = []
+function scrape(info){
+  const axios = require("axios");
+  const cheerio = require("cheerio");
+  const url = 'https://www.ndbc.noaa.gov/station_page.php?station=44065';
+
   // objects to store the data in
   let currWindInfo = {};
   let histWindInfo = {};
   let currSwellInfo = {};
   let histSwellInfo = {};
 
-  // import axios from "axios";
-  // import cheerio from "cheerio";
-  const axios = require("axios");
-  const cheerio = require("cheerio")
-  const url = 'https://www.ndbc.noaa.gov/station_page.php?station=44065';
   axios(url).then(response => {
-      const html = response.data;
-      const $ = cheerio.load(html);
+    const html = response.data;
+    const $ = cheerio.load(html);
+    // Scraping info for currWindInfo
+    currWindInfo["Wind Direction"] = $("#data > table:nth-child(2) > tbody:nth-child(2) > tr:nth-child(2) > td:nth-child(3)").text();
+    currWindInfo["Wind Speed"] = $("#data > table:nth-child(2) > tbody:nth-child(2) > tr:nth-child(3) > td:nth-child(3)").text();
 
-      // Scraping info for currWindInfo
-      currWindInfo["Wind Direction"] = $("#data > table:nth-child(2) > tbody:nth-child(2) > tr:nth-child(2) > td:nth-child(3)").text();
-      currWindInfo["Wind Speed"] = $("#data > table:nth-child(2) > tbody:nth-child(2) > tr:nth-child(3) > td:nth-child(3)").text();
+    // Scraping info for currSwellInfo
+    let currSwellTbodyLen = $("#data > table:nth-child(6) > tbody:nth-child(2)").children('tr').length;
+    for (let i = 2; i < currSwellTbodyLen + 1; i++) {
+      currSwellInfo[$("table:nth-child(6) > tbody:nth-child(2) > tr:nth-child(" + i + ") > td:nth-child(2)").text()] =
+      $("table:nth-child(6) > tbody:nth-child(2) > tr:nth-child(" + i + ") > td:nth-child(3)").text();
+    }
 
-      // Scraping info for currSwellInfo
-      let currSwellTbodyLen = $("#data > table:nth-child(6) > tbody:nth-child(2)").children('tr').length;
-      for (let i = 2; i < currSwellTbodyLen + 1; i++) {
-        currSwellInfo[$("table:nth-child(6) > tbody:nth-child(2) > tr:nth-child(" + i + ") > td:nth-child(2)").text()] =
-        $("table:nth-child(6) > tbody:nth-child(2) > tr:nth-child(" + i + ") > td:nth-child(3)").text();
-      }
-
-      // Scraping info for histWindInfo
-      let histWindTbodyLen = $("table.dataTable:nth-child(4) > tbody:nth-child(2)").children('tr').length;
-      for (let i = 3; i < histWindTbodyLen + 1; i++) {
-        let month = $("table.dataTable:nth-child(4) > tbody:nth-child(2) > tr:nth-child(" + i + ") > td:nth-child(1)").text() + "_";
-        let day   = $("table.dataTable:nth-child(4) > tbody:nth-child(2) > tr:nth-child(" + i + ") > td:nth-child(2)").text() + "_";
-        let time  = $("table.dataTable:nth-child(4) > tbody:nth-child(2) > tr:nth-child(" + i + ") > td:nth-child(3)").text();
-        histWindInfo[month + day + time] = {
-          "Wind Direction" : $('table.dataTable:nth-child(4) > tbody:nth-child(2) > tr:nth-child(' + i + ') > td:nth-child(4)').text(),
-          "Wind Speed"     : $('table.dataTable:nth-child(4) > tbody:nth-child(2) > tr:nth-child(' + i + ') > td:nth-child(5)').text(),
+    // Scraping info for histWindInfo
+    let histWindTbodyLen = $("table.dataTable:nth-child(4) > tbody:nth-child(2)").children('tr').length;
+    for (let i = 3; i < histWindTbodyLen + 1; i++) {
+      let month = $("table.dataTable:nth-child(4) > tbody:nth-child(2) > tr:nth-child(" + i + ") > td:nth-child(1)").text() + "_";
+      let day   = $("table.dataTable:nth-child(4) > tbody:nth-child(2) > tr:nth-child(" + i + ") > td:nth-child(2)").text() + "_";
+      let time  = $("table.dataTable:nth-child(4) > tbody:nth-child(2) > tr:nth-child(" + i + ") > td:nth-child(3)").text();
+      histWindInfo[month + day + time] = {
+        "Wind Direction" : $('table.dataTable:nth-child(4) > tbody:nth-child(2) > tr:nth-child(' + i + ') > td:nth-child(4)').text(),
+        "Wind Speed"     : $('table.dataTable:nth-child(4) > tbody:nth-child(2) > tr:nth-child(' + i + ') > td:nth-child(5)').text(),
         }
       }
 
@@ -55,22 +55,16 @@ function datascraper() {
             'Average Wave Period (APD)'      : $('table.dataTable:nth-child(7) > tbody:nth-child(2) > tr:nth-child(' + i + ') > td:nth-child(12)').text(),
         }
       }
-      const data = {... currWindInfo, currSwellInfo, histWindInfo, histSwellInfo};
-      console.log(typeof data);
-      return data;
-    }).catch(console.error);
+      const data = { currWindInfo, currSwellInfo, histWindInfo, histSwellInfo};
+      return info.push(data);
+  }).then(response => {
+    const val = response.json();
+    console.log(val);
+  })
+  .catch(console.error);
 }
 
-// Testing by invoking the function
-datascraper();
+scrape();
+console.log(info);
 
-  // convert JSON object to string
-  // function convertor(filename, obj) {
-  //   const data = JSON.stringify(obj);
-  //   // write JSON string to a file
-  //   let file = filename + '.json'
-  //   fs.writeFile(file, data, (err) => {
-  //       if (err) {throw err;}
-  //       console.log(file + " was saved.");
-  //   });
-  // }
+// AsyncCall().then(res=>res.json()).then(data => doSomethingWithDataHere_itsnotaproniseanymorehere)
