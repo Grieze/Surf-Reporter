@@ -1,27 +1,27 @@
 {
-  "name": "Surf-Reporter",
-  "version": "1.0.0",
-  "description": "This is a simple web dev project that pulls data used to determine whether a surf spot is good or not given the data.",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Grieze/Surf-Reporter.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Grieze/Surf-Reporter/issues"
-  },
-  "homepage": "https://github.com/Grieze/Surf-Reporter#readme",
-  "dependencies": {
-    "axios": "^0.23.0",
-    "cheerio": "^1.0.0-rc.10",
-    "cors": "^2.8.5",
-    "express": "^4.17.1"
-  }
+    "name": "surf-reporter",
+    "version": "1.0.0",
+    "description": "This is a simple web dev project that pulls data used to determine whether a surf spot is good or not given the data.",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Grieze/Surf-Reporter.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Grieze/Surf-Reporter/issues"
+    },
+    "homepage": "https://github.com/Grieze/Surf-Reporter#readme",
+    "dependencies": {
+        "axios": "^0.23.0",
+        "cheerio": "^1.0.0-rc.10",
+        "cors": "^2.8.5",
+        "express": "^4.17.1"
+    }
 }
