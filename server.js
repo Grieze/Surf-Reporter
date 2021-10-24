@@ -1,5 +1,6 @@
-const { data } = require('cheerio/lib/api/attributes');
 const express = require('express');
+
+const scrape = require('./webscraper/dataScraperAPI');
 
 const app = express();
 const port = '8000';
@@ -11,8 +12,10 @@ app.get('/', (req, res) => {
       res.send(message)
   })
 
-app.get('/reports', (req, res) => {
-  return res.send("WORK IN PROGRESS!");
+app.get('/reports', async (req, res) => {
+    // Demo of how to incorporate business logic to an endpoint
+    const data = await scrape();
+    return res.send(data);
 })
 app.listen(port, () => {
       console.log(`Example app listening at http://localhost:${port}`);

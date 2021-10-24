@@ -1,6 +1,4 @@
-// const { data } = require("cheerio/lib/api/attributes");
-let info = []
-function scrape(info){
+function scrape() {
   const axios = require("axios");
   const cheerio = require("cheerio");
   const url = 'https://www.ndbc.noaa.gov/station_page.php?station=44065';
@@ -11,7 +9,7 @@ function scrape(info){
   let currSwellInfo = {};
   let histSwellInfo = {};
 
-  axios(url).then(response => {
+  const response = axios(url).then(response => {
     const html = response.data;
     const $ = cheerio.load(html);
     // Scraping info for currWindInfo
@@ -55,16 +53,14 @@ function scrape(info){
             'Average Wave Period (APD)'      : $('table.dataTable:nth-child(7) > tbody:nth-child(2) > tr:nth-child(' + i + ') > td:nth-child(12)').text(),
         }
       }
-      const data = { currWindInfo, currSwellInfo, histWindInfo, histSwellInfo};
-      return info.push(data);
-  }).then(response => {
-    const val = response.json();
-    console.log(val);
+      return { currWindInfo, currSwellInfo, histWindInfo, histSwellInfo };
   })
   .catch(console.error);
+  return response;
 }
 
-scrape();
-console.log(info);
+module.exports = scrape;
+// scrape();
+// console.log(info);
 
 // AsyncCall().then(res=>res.json()).then(data => doSomethingWithDataHere_itsnotaproniseanymorehere)
