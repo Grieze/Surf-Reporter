@@ -1,10 +1,11 @@
 const express = require('express');
-
+const cors = require('cors');
 const scrape = require('./webscraper/dataScraperAPI');
 
 const app = express();
 const port = '8000';
 const message = 'Welcome to the beginning of the Surf Reporter API!';
+app.use(cors());
 
 app.get('/', (req, res) => {
       // console.log('User made a get request to "/"', req);
