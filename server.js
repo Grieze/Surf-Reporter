@@ -15,6 +15,7 @@ app.get('/', (req, res) => {
 
 app.get('/reports', async (req, res) => {
     // Demo of how to incorporate business logic to an endpoint
+    console.log('User just accessed index.html');
     const data = await scrape();
     return res.send(data);
 })
