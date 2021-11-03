@@ -25,8 +25,7 @@ function scrape() {
     currSwellInfo['windWaveHeight']       = $('table:nth-child(6) > tbody:nth-child(2) > tr:nth-child(6) > td:nth-child(3)').text().trim();
     currSwellInfo['windWavePeriod']       = $('table:nth-child(6) > tbody:nth-child(2) > tr:nth-child(7) > td:nth-child(3)').text().trim();
     currSwellInfo['windWaveDirection']       = $('table:nth-child(6) > tbody:nth-child(2) > tr:nth-child(8) > td:nth-child(3)').text().trim();
-    currSwellInfo['steepness'] = $('table:nth-child(6) > tbody:nth-child(2) > tr:nth-child(9) > td:nth-child(3)').text().trim();
-    currSwellInfo['averageWavePeriod']       = $('table:nth-child(6) > tbody:nth-child(2) > tr:nth-child(10) > td:nth-child(3)').text().trim();
+    currSwellInfo['averageWavePeriod'] = $('table:nth-child(6) > tbody:nth-child(2) > tr:nth-child(9) > td:nth-child(3)').text().trim();
 
     // Scraping info for histWindInfo
     let histWindTbodyLen = $("table.dataTable:nth-child(4) > tbody:nth-child(2)").children('tr').length;

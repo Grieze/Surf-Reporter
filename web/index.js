@@ -36,8 +36,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
         windWavePeriod.textContent = "Wind Wave Period: " + JSON.stringify(data.currSwellInfo["windWavePeriod"]);
         let windWaveDirection = document.createElement("div");
         windWaveDirection.textContent = "Wind Wave Direction: " + JSON.stringify(data.currSwellInfo["windWaveDirection"]);
-        let steepness = document.createElement("div");
-        steepness.textContent = "Steepness: " + JSON.stringify(data.currSwellInfo["steepness"]);
         let averageWavePeriod = document.createElement("div");
         averageWavePeriod.textContent = "Average Wave Period: " + JSON.stringify(data.currSwellInfo["averageWavePeriod"]);
         
@@ -49,8 +47,65 @@ window.addEventListener('DOMContentLoaded', (event) => {
         currWave.appendChild(windWaveHeight);
         currWave.appendChild(windWavePeriod);
         currWave.appendChild(windWaveDirection);
-        currWave.appendChild(steepness);
         currWave.appendChild(averageWavePeriod);
+
+        // Hist Wind Data
+        for (key in data.histWindInfo){
+            // console.log(data.histWindInfo[key]);
+            let windDate = document.createElement("div");
+            windDate.innerText = 'Date: ' + JSON.stringify(data.histWindInfo[key]['month']) + '/' + JSON.stringify(data.histWindInfo[key]['day']);
+            let windTime = document.createElement("div");
+            windTime.innerText = 'Time: ' + JSON.stringify(data.histWindInfo[key]['time']);
+            let histWindDirection = document.createElement("div");
+            histWindDirection.innerText = "Wind Direction: " + JSON.stringify(data.histWindInfo[key]['windDirection']);
+            let histWindSpeed = document.createElement("div");
+            histWindSpeed.textContent = "Wind Speed: " + JSON.stringify(data.currWindInfo["windSpeed"]);
+
+            histWind.appendChild(windDate);
+            histWind.appendChild(windTime);
+            histWind.appendChild(histWindDirection);
+            histWind.appendChild(histWindSpeed);
+        }
+
+        // Hist Swell Data
+        for (key in data.histSwellInfo){
+            let swellDate = document.createElement("div");
+            swellDate.innerText = 'Date: ' + JSON.stringify(data.histSwellInfo[key]['month']) + '/' + JSON.stringify(data.histSwellInfo[key]['day']);
+            let swellTime = document.createElement("div");
+            swellTime.innerText = 'Time: ' + JSON.stringify(data.histSwellInfo[key]['time']);
+            let histWaveHeight = document.createElement("div");
+            histWaveHeight.textContent = "Significant Wave Height: " + JSON.stringify(data.histSwellInfo[key]["waveHeight"]);
+            let histSwellHeight = document.createElement("div");
+            histSwellHeight.textContent = "Swell Height: " + JSON.stringify(data.histSwellInfo[key]["swellHeight"]);
+            let histSwellPeriod = document.createElement("div");
+            histSwellPeriod.textContent = "Swell Period: " + JSON.stringify(data.histSwellInfo[key]["swellPeriod"]);
+            let histSwellDirection = document.createElement("div");
+            histSwellDirection.textContent = "Swell Direction: " + JSON.stringify(data.histSwellInfo[key]["swellDirection"]);
+            let histWindWaveHeight = document.createElement("div");
+            histWindWaveHeight.textContent = "Wind Wave Height: " + JSON.stringify(data.histSwellInfo[key]["windWaveHeight"]);
+            let histWindWavePeriod = document.createElement("div");
+            histWindWavePeriod.textContent = "Wind Wave Period: " + JSON.stringify(data.histSwellInfo[key]["windWavePeriod"]);
+            let histWindWaveDirection = document.createElement("div");
+            histWindWaveDirection.textContent = "Wind Wave Direction: " + JSON.stringify(data.histSwellInfo[key]["windWaveDirection"]);
+            let steepness = document.createElement("div");
+            steepness.textContent = "Steepness: " + JSON.stringify(data.histSwellInfo[key]["steepness"]);
+            let histAverageWavePeriod = document.createElement("div");
+            histAverageWavePeriod.textContent = "Average Wave Period: " + JSON.stringify(data.histSwellInfo[key]["averageWavePeriod"]);
+            
+            // appending all the data
+            histWave.appendChild(swellDate);
+            histWave.appendChild(swellTime);
+            histWave.appendChild(histWaveHeight);
+            histWave.appendChild(histSwellHeight);
+            histWave.appendChild(histSwellPeriod);
+            histWave.appendChild(histSwellDirection);
+            histWave.appendChild(histWindWaveHeight);
+            histWave.appendChild(histWindWavePeriod);
+            histWave.appendChild(histWindWaveDirection);
+            histWave.appendChild(steepness);
+            histWave.appendChild(histAverageWavePeriod);
+        }
+
 
         // inside function data is not a promise
         // we can do async stuff
