@@ -1,3 +1,6 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
 window.addEventListener('DOMContentLoaded', (event) => {
     let currWind = document.getElementById("currWind");
     let currWave = document.getElementById("currWave");
@@ -11,7 +14,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
         console.log('data', data) // data is a JSON object
 
         // adding all of the data to the front end
-
         // Current Wind Data
         let windDirection = document.createElement("div");
         windDirection.textContent = "Wind Direction: " + JSON.stringify(data.currWindInfo["windDirection"]);
@@ -105,8 +107,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
             histWave.appendChild(steepness);
             histWave.appendChild(histAverageWavePeriod);
         }
-
-
         // inside function data is not a promise
         // we can do async stuff
         return data;

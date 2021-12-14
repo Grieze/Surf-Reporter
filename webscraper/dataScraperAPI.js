@@ -18,13 +18,13 @@ function scrape() {
     currWindInfo["windSpeed"] = $("#data > table:nth-child(2) > tbody:nth-child(2) > tr:nth-child(3) > td:nth-child(3)").text().trim();
 
     // Scraping info for currSwellInfo
-    currSwellInfo['waveHeight']      = $('table:nth-child(6) > tbody:nth-child(2) > tr:nth-child(2) > td:nth-child(3)').text().trim();
+    currSwellInfo['waveHeight']        = $('table:nth-child(6) > tbody:nth-child(2) > tr:nth-child(2) > td:nth-child(3)').text().trim();
     currSwellInfo['swellHeight']       = $('table:nth-child(6) > tbody:nth-child(2) > tr:nth-child(3) > td:nth-child(3)').text().trim();
     currSwellInfo['swellPeriod']       = $('table:nth-child(6) > tbody:nth-child(2) > tr:nth-child(4) > td:nth-child(3)').text().trim();
-    currSwellInfo['swellDirection']       = $('table:nth-child(6) > tbody:nth-child(2) > tr:nth-child(5) > td:nth-child(3)').text().trim();
-    currSwellInfo['windWaveHeight']       = $('table:nth-child(6) > tbody:nth-child(2) > tr:nth-child(6) > td:nth-child(3)').text().trim();
-    currSwellInfo['windWavePeriod']       = $('table:nth-child(6) > tbody:nth-child(2) > tr:nth-child(7) > td:nth-child(3)').text().trim();
-    currSwellInfo['windWaveDirection']       = $('table:nth-child(6) > tbody:nth-child(2) > tr:nth-child(8) > td:nth-child(3)').text().trim();
+    currSwellInfo['swellDirection']    = $('table:nth-child(6) > tbody:nth-child(2) > tr:nth-child(5) > td:nth-child(3)').text().trim();
+    currSwellInfo['windWaveHeight']    = $('table:nth-child(6) > tbody:nth-child(2) > tr:nth-child(6) > td:nth-child(3)').text().trim();
+    currSwellInfo['windWavePeriod']    = $('table:nth-child(6) > tbody:nth-child(2) > tr:nth-child(7) > td:nth-child(3)').text().trim();
+    currSwellInfo['windWaveDirection'] = $('table:nth-child(6) > tbody:nth-child(2) > tr:nth-child(8) > td:nth-child(3)').text().trim();
     currSwellInfo['averageWavePeriod'] = $('table:nth-child(6) > tbody:nth-child(2) > tr:nth-child(9) > td:nth-child(3)').text().trim();
 
     // Scraping info for histWindInfo

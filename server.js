@@ -7,6 +7,7 @@ const port = '8000';
 const message = 'Welcome to the beginning of the Surf Reporter API!';
 app.use(cors());
 
+// HTTP Requests and Routes
 app.get('/', (req, res) => {
       // console.log('User made a get request to "/"', req);
       console.log("Successfully made a get request!");
