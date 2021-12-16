@@ -1,36 +1,29 @@
 import { useState, useEffect } from 'react';
 
-import WeatherCard from './weather-card/WeatherCard';
+import WindDirectionCard from './weather-card/WindDirectionCard';
+import WindSpeedCard from './weather-card/WindSpeedCard';
 
 const CurrWind = () => {
   const [currentData, setCurrentData] = useState();
 
   const getData = async () => {
-    const response = await fetch('http://localhost:8000/reports');
+    const response = await fetch('http://localhost:8000/wind');
     const data = await response.json();
+    // console.log('data', data);
     setCurrentData(data);
-  };
-
-  const testEndpoint = async () => {
-    const response = await fetch('http://localhost:8000/wat');
-    const data = await response.text();
-    console.log('WAT IS THIS', data);
   };
 
   useEffect(() => {
     getData();
   }, []);
-
+  // console.log('currentData', currentData);
   return (
     <div>
-      <button onClick={testEndpoint}>WAT</button>
-      <WeatherCard
-        weatherDataLabel={'Wind Direction'}
-        weatherData={currentData?.currWindInfo?.windDirection}
-      />
-      <WeatherCard
+      {/* <button onClick={testEndpoint}>WAT</button> */}
+      <WindDirectionCard weatherDataLabel={'Wind Direction'} weatherData={currentData?.[41]} />
+      <WindSpeedCard
         weatherDataLabel='Wind Speed'
-        weatherData={currentData?.currWindInfo?.windSpeed}
+        weatherData={Math.floor(currentData?.[42] / 0.44704)}
       />
     </div>
   );
