@@ -2,7 +2,7 @@ const WindDirectionCard = ({ weatherData, weatherDataLabel }) => {
   return (
     <div>
       <span>{weatherDataLabel}: </span>
-      <span>{weatherData} degrees</span>
+      <span>{weatherData !== 'MM' ? weatherData : 'None'} degrees</span>
     </div>
   );
 };

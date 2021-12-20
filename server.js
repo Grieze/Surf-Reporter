@@ -56,11 +56,6 @@ app.get('/reports', async (req, res) => {
   return res.send(data);
 });
 
-app.get('/currwind', async (req, res) => {
-  console.log('Accessing Curr Wind Data');
-  const data = await scrapeCurrWind();
-  return res.send(data);
-});
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });

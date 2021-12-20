@@ -1,5 +1,7 @@
 import CurrWind from './Components/CurrWind';
 import CurrSwell from './Components/CurrSwell';
+import HistWind from './Components/HistWind';
+import HistSwell from './Components/HistSwell';
 
 function App() {
   return (
@@ -9,6 +11,8 @@ function App() {
         <h3>It's a work in progress...</h3>
         <CurrWind />
         <CurrSwell />
+        <HistWind />
+        <HistSwell />
       </header>
     </div>
   );
