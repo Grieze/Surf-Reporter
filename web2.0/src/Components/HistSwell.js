@@ -32,7 +32,7 @@ const HistSwell = () => {
         <div key={i}>
           <div>
             <div>
-              {currentData?.[hourIndex + shift]}:{currentData?.[index + shift]}
+              Time: {currentData?.[hourIndex + shift]}:{currentData?.[index + shift]}
             </div>
             <div>Wave Height: {currentData?.[waveHeightIndex + shift]} meters</div>
             <div>Swell Height: {currentData?.[swellHeightIndex + shift]} meters</div>
