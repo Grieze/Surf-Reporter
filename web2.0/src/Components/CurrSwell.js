@@ -16,10 +16,10 @@ const CurrSwell = () => {
   //   console.log('currentData', currentData);
   return (
     <div>
-      <div>Wave Height: {currentData?.[33]} meters</div>
-      <div>Swell Height: {currentData?.[34]} meters</div>
+      <div>Wave Height: {(currentData?.[33] * 3.28084).toFixed(2)} feet</div>
+      <div>Swell Height: {(currentData?.[34] * 3.28084).toFixed(2)} feet</div>
       <div>Swell Period: {currentData?.[35]} seconds</div>
-      <div>Wind Wave Height: {currentData?.[36]} meters</div>
+      <div>Wind Wave Height: {(currentData?.[36] * 3.28084).toFixed(2)} feet</div>
       <div>Wind Wave Period: {currentData?.[37]} seconds</div>
       <div>Swell Direction: {currentData?.[38]}</div>
       <div>Wind Wave Direction: {currentData?.[39]}</div>
@@ -29,16 +29,3 @@ const CurrSwell = () => {
 };
 
 export default CurrSwell;
-
-/*
-
-waveHeight	"4.9 ft"
-swellHeight	"4.3 ft"
-swellPeriod	"5.9 sec"
-windWaveHeight	"2.0 ft"
-windWavePeriod	"3.8 sec"
-swellDirection	"SE"
-windWaveDirection	"SE"
-averageWavePeriod	"VERY_STEEP"
-
-*/

@@ -18,11 +18,24 @@ code {
 }
 
 .current-info {
-  padding: 15px;
+  padding: 0px 15px 0px 0px;
+  display: flex;
+}
+
+.current-container {
+  border-width: 3px;
+  border-style: solid;
+  padding: 2px;
+}
+
+.current-header {
+  border-width: 3px;
+  border-style: solid;
+  padding: 2px;
 }
 
 .historic-info {
-  padding: 15px;
+  padding: 0px 0px 0px 15px;
 }
 
 .page-header {
@@ -50,3 +63,102 @@ code {
   display: flex;
   margin: 10px;
 }
+
+/* Compass Code */
+.compass {
+  width: 340px;
+  height: 340px;
+  background-color: #f3f3f3;
+  border-radius: 100%;
+  background-image: -webkit-linear-gradient(top, #f7f7f7, #ececec);
+  position: relative;
+  margin: 0 auto;
+}
+
+.compass-inner {
+  width: 280px;
+  height: 280px;
+  background-color: #3d3d3d;
+  border-radius: 100%;
+  position: relative;
+  left: 27.5px;
+  top: 27.5px;
+  border: 3px solid #c5c5c5;
+}
+
+.main-arrow {
+  height: 100%;
+  width: 30px;
+  left: 155px;
+  position: relative;
+  padding-top: 5px;
+  box-sizing: border-box;
+  transform: rotate(20deg);
+  animation: spin 2s alternate infinite;
+  -ms-transform: rotate(20deg);
+  -o-transform: rotate(20deg);
+  -o-animation: spin 2s alternate infinite;
+  -moz-transform: rotate(20deg);
+  -moz-animation: spin 2s alternate infinite;
+  -webkit-transform: rotate(20deg);
+  -webkit-animation: spin 2s alternate infinite;
+}
+
+.arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 165px solid #ef5052;
+  position: relative;
+}
+
+.arrow-down {
+  -webkit-transform: rotate(180deg); /* Safari and Chrome */
+  width: 0;
+  transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 165px solid #f3f3f3;
+  position: relative;
+}
+
+.north {
+  font-size: 32px;
+  font-family: 'Lobster Two', cursive;
+  color: #fff;
+  position: absolute;
+  left: 125px;
+  top: 0px;
+}
+
+.east {
+  font-size: 32px;
+  font-family: 'Lobster Two', cursive;
+  color: #fff;
+  position: absolute;
+  left: 250px;
+  top: 120px;
+}
+
+.west {
+  font-size: 32px;
+  font-family: 'Lobster Two', cursive;
+  color: #fff;
+  position: absolute;
+  left: 5px;
+  top: 120px;
+}
+
+.south {
+  font-size: 32px;
+  font-family: 'Lobster Two', cursive;
+  color: #fff;
+  position: absolute;
+  left: 125px;
+  top: 230px;
+}
+
+/* End Compass code */

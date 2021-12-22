@@ -34,10 +34,17 @@ const HistSwell = () => {
             <div>
               Time: {currentData?.[hourIndex + shift]}:{currentData?.[index + shift]}
             </div>
-            <div>Wave Height: {currentData?.[waveHeightIndex + shift]} meters</div>
-            <div>Swell Height: {currentData?.[swellHeightIndex + shift]} meters</div>
+            <div>
+              Wave Height: {(currentData?.[waveHeightIndex + shift] * 3.28084).toFixed(2)} feet
+            </div>
+            <div>
+              Swell Height: {(currentData?.[swellHeightIndex + shift] * 3.28084).toFixed(2)} meters
+            </div>
             <div>Swell Period: {currentData?.[swellPeriodIndex + shift]} seconds</div>
-            <div>Wind Wave Height: {currentData?.[windWaveHeightIndex + shift]} meters</div>
+            <div>
+              Wind Wave Height: {(currentData?.[windWaveHeightIndex + shift] * 3.28084).toFixed(2)}
+              feet
+            </div>
             <div>Wind Wave Period: {currentData?.[windWavePeriodIndex + shift]} seconds</div>
             <div>Swell Direction: {currentData?.[swellDirectionIndex + shift]}</div>
             <div>Wind Wave Direction: {currentData?.[windWaveDirectionIndex + shift]}</div>

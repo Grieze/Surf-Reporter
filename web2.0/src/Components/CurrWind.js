@@ -13,14 +13,39 @@ const CurrWind = () => {
     setCurrentData(data);
   };
 
+  const degToCompass = (num) => {
+    let val = Math.floor(Number(num) / 22.5 + 0.5);
+    const arr = [
+      'N',
+      'NNE',
+      'NE',
+      'ENE',
+      'E',
+      'ESE',
+      'SE',
+      'SSE',
+      'S',
+      'SSW',
+      'SW',
+      'WSW',
+      'W',
+      'WNW',
+      'NW',
+      'NNW',
+    ];
+    return arr[val % 16];
+  };
+
   useEffect(() => {
     getData();
   }, []);
-  // console.log('currentData', currentData);
+
   return (
     <div>
-      {/* <button onClick={testEndpoint}>WAT</button> */}
-      <WindDirectionCard weatherDataLabel={'Wind Direction'} weatherData={currentData?.[41]} />
+      <WindDirectionCard
+        weatherDataLabel={'Wind Direction'}
+        weatherData={degToCompass(currentData?.[41])}
+      />
       <WindSpeedCard
         weatherDataLabel='Wind Speed'
         weatherData={Math.floor(currentData?.[42] / 0.44704)}
