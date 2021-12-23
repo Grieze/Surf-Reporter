@@ -16,10 +16,19 @@ const CurrSwell = () => {
   //   console.log('currentData', currentData);
   return (
     <div>
-      <div>Wave Height: {(currentData?.[33] * 3.28084).toFixed(2)} feet</div>
-      <div>Swell Height: {(currentData?.[34] * 3.28084).toFixed(2)} feet</div>
+      <div>
+        Wave Height: {Math.ceil(currentData?.[33] * 3.28084).toFixed(2)}{' '}
+        {Math.ceil(currentData?.[33] * 3.28084).toFixed(2) > 1 ? ' feet' : ' foot'}
+      </div>
+      <div>
+        Swell Height: {Math.ceil(currentData?.[34] * 3.28084).toFixed(2)}{' '}
+        {Math.ceil(currentData?.[34] * 3.28084).toFixed(2) > 1 ? ' feet' : ' foot'}
+      </div>
       <div>Swell Period: {currentData?.[35]} seconds</div>
-      <div>Wind Wave Height: {(currentData?.[36] * 3.28084).toFixed(2)} feet</div>
+      <div>
+        Wind Wave Height: {Math.ceil(currentData?.[36] * 3.28084).toFixed(2)}
+        {Math.ceil(currentData?.[36] * 3.28084).toFixed(2) > 1 ? ' feet' : ' foot'}
+      </div>
       <div>Wind Wave Period: {currentData?.[37]} seconds</div>
       <div>Swell Direction: {currentData?.[38]}</div>
       <div>Wind Wave Direction: {currentData?.[39]}</div>

@@ -1,8 +1,8 @@
 const WindSpeedCard = ({ weatherData, weatherDataLabel }) => {
   return (
-    <div>
-      <span>{weatherDataLabel}: </span>
-      <span>{weatherData} mph</span>
+    <div className='wind-speed-card'>
+      <div>{weatherDataLabel}: </div>
+      <div>{weatherData} mph</div>
     </div>
   );
 };

@@ -17,21 +17,21 @@ const CurrWind = () => {
     let val = Math.floor(Number(num) / 22.5 + 0.5);
     const arr = [
       'N',
-      'NNE',
+      'N-NE',
       'NE',
-      'ENE',
+      'E-NE',
       'E',
-      'ESE',
+      'E-SE',
       'SE',
-      'SSE',
+      'S-SE',
       'S',
-      'SSW',
+      'S-SW',
       'SW',
-      'WSW',
+      'W-SW',
       'W',
-      'WNW',
+      'W-NW',
       'NW',
-      'NNW',
+      'N-NW',
     ];
     return arr[val % 16];
   };

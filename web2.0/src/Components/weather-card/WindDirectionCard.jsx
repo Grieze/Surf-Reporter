@@ -1,8 +1,8 @@
 const WindDirectionCard = ({ weatherData, weatherDataLabel }) => {
   return (
-    <div>
-      <span>{weatherDataLabel}:</span>
-      <span> {weatherData !== 'MM' ? weatherData : 'None'}</span>
+    <div className='wind-direction-card'>
+      <div>{weatherDataLabel}: </div>
+      <div>{weatherData !== 'MM' ? weatherData : 'None'}</div>
     </div>
   );
 };

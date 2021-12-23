@@ -34,6 +34,7 @@ code {
   border-color: #494949;
   border-style: solid;
   border-radius: 8px;
+  font-weight: bold;
 }
 
 .current-container {
@@ -50,7 +51,6 @@ code {
   border-color: #494949;
   border-style: solid;
   border-radius: 8px;
-  /* color: #0ebc73; */
 }
 
 .historic-info {
@@ -73,6 +73,20 @@ code {
   color: #ffffff;
 }
 
+.wind-direction-card {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  justify-content: space-between;
+}
+
+.wind-speed-card {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  justify-content: space-between;
+}
+
 .HistSwell {
   display: flex;
   padding: 15px;
@@ -86,7 +100,6 @@ code {
 .CurrWind {
   display: flex;
   margin: 10px;
-  color: #dea5a4;
 }
 
 .CurrSwell {
