@@ -12,19 +12,9 @@ function App() {
           <div className='current-info'>
             <div className='current-container'>
               <h3 className='current-header'>Current Rockaway Information</h3>
-              <CurrWind className='CurrWind' />
-              <CurrSwell className='CurrSwell' />
-            </div>
-            <div className='compass'>
-              <div className='compass-inner'>
-                <div className='north'>N</div>
-                <div className='east'>E</div>
-                <div className='west'>W</div>
-                <div className='south'>S</div>
-                {/* <div className='main-arrow'>
-                  <div className='arrow-up'></div>
-                  <div className='arrow-down'></div>
-                </div> */}
+              <div className='current-info-box'>
+                <CurrWind className='CurrWind' />
+                <CurrSwell className='CurrSwell' />
               </div>
             </div>
           </div>
