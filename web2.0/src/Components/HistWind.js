@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import WindDirectionCard from './weather-card/WindDirectionCard';
+import DirectionCard from './weather-card/DirectionCard';
 import WindSpeedCard from './weather-card/WindSpeedCard';
 
 const HistWind = () => {
@@ -36,7 +36,7 @@ const HistWind = () => {
           <div>
             Time: {currentData?.[hourIndex + shift]}:{currentData?.[index + shift]}
           </div>
-          <WindDirectionCard
+          <DirectionCard
             weatherDataLabel={'Wind Direction'}
             weatherData={currentData?.[directionIndex + shift]}
           />

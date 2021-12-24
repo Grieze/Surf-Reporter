@@ -5,10 +5,26 @@
 body {
   margin: 0;
   font-family: 'Barlow', sans-serif;
-  color: #dea5a4;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #ffffff;
+}
+
+footer {
+  margin: 13% 0% 0% 0%;
+  font-family: 'Barlow', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #70b2d9;
+  background-image: linear-gradient(315deg, #70b2d9 0%, #39e5b6 74%);
+  border-radius: 8px;
+  color: #ffffff;
+  padding: 10px;
+  font-weight: bold;
 }
 
 code {
@@ -62,22 +78,25 @@ code {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgb(255, 246, 0);
+  /* background: rgb(255, 246, 0);
   background: linear-gradient(
     90deg,
     rgba(255, 246, 0, 1) 0%,
     rgba(3, 235, 63, 1) 50%,
     rgba(35, 88, 228, 1) 100%
-  );
+  ); */
+  background-color: #70b2d9;
+  background-image: linear-gradient(315deg, #70b2d9 0%, #39e5b6 74%);
   border-radius: 8px;
   color: #ffffff;
 }
 
-.wind-direction-card {
+.direction-card {
   display: flex;
   align-items: center;
   margin: auto;
   justify-content: space-between;
+  padding: 5px 15px 5px 15px;
 }
 
 .wind-speed-card {
@@ -85,6 +104,23 @@ code {
   align-items: center;
   margin: auto;
   justify-content: space-between;
+  padding: 5px 15px 5px 15px;
+}
+
+.height-card {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  justify-content: space-between;
+  padding: 5px 15px 5px 15px;
+}
+
+.period-card {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  justify-content: space-between;
+  padding: 5px 15px 5px 15px;
 }
 
 .HistSwell {
@@ -108,5 +144,124 @@ code {
 }
 
 /* Compass Code */
+.compass {
+  margin: 20px;
+  display: block;
+  width: 300px;
+  height: 300px;
+  border-radius: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.85);
+  background: #494949;
+  position: relative;
+  font-family: 'Barlow', Sans-Serif;
+  color: #fff;
+  text-shadow: 1px 1px 1px black;
+}
+.compass::before {
+  font-weight: bold;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  content: 'N';
+  font-size: 20px;
+  top: 10px;
+}
 
+.direction {
+  height: 100%;
+  width: 100%;
+  display: block;
+  border-radius: 100%;
+}
+
+.direction > p {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  line-height: 80px;
+  display: block;
+  margin-top: -45px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.direction > p > span {
+  display: block;
+  line-height: normal;
+  margin-top: -24px;
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: normal;
+}
+
+.arrow {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  top: 0;
+}
+.arrow::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 30px solid red;
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  margin-left: -5px;
+  z-index: 99;
+}
+.arrow.nne {
+  transform: rotate(22.5deg);
+}
+.arrow.ne {
+  transform: rotate(45deg);
+}
+.arrow.ene {
+  transform: rotate(67.5deg);
+}
+.arrow.e {
+  transform: rotate(90deg);
+}
+.arrow.ese {
+  transform: rotate(112.5deg);
+}
+.arrow.se {
+  transform: rotate(135deg);
+}
+.arrow.sse {
+  transform: rotate(157.5deg);
+}
+.arrow.s {
+  transform: rotate(180deg);
+}
+.arrow.ssw {
+  transform: rotate(202.5deg);
+}
+.arrow.sw {
+  transform: rotate(-135deg);
+}
+.arrow.wsw {
+  transform: rotate(-114.5deg);
+}
+.arrow.w {
+  transform: rotate(-90deg);
+}
+.arrow.wnw {
+  transform: rotate(-69.5deg);
+}
+.arrow.nw {
+  transform: rotate(-45deg);
+}
+.arrow.nnw {
+  transform: rotate(-24.5deg);
+}
 /* End Compass code */

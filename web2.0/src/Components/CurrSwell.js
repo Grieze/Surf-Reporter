@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react';
 
+import HeightCard from './weather-card/HeightCard';
+import PeriodCard from './weather-card/PeriodCard';
+import DirectionCard from './weather-card/DirectionCard';
+
 const CurrSwell = () => {
   const [currentData, setCurrentData] = useState();
 
@@ -16,23 +20,14 @@ const CurrSwell = () => {
   //   console.log('currentData', currentData);
   return (
     <div>
-      <div>
-        Wave Height: {Math.ceil(currentData?.[33] * 3.28084).toFixed(2)}{' '}
-        {Math.ceil(currentData?.[33] * 3.28084).toFixed(2) > 1 ? ' feet' : ' foot'}
-      </div>
-      <div>
-        Swell Height: {Math.ceil(currentData?.[34] * 3.28084).toFixed(2)}{' '}
-        {Math.ceil(currentData?.[34] * 3.28084).toFixed(2) > 1 ? ' feet' : ' foot'}
-      </div>
-      <div>Swell Period: {currentData?.[35]} seconds</div>
-      <div>
-        Wind Wave Height: {Math.ceil(currentData?.[36] * 3.28084).toFixed(2)}
-        {Math.ceil(currentData?.[36] * 3.28084).toFixed(2) > 1 ? ' feet' : ' foot'}
-      </div>
-      <div>Wind Wave Period: {currentData?.[37]} seconds</div>
-      <div>Swell Direction: {currentData?.[38]}</div>
-      <div>Wind Wave Direction: {currentData?.[39]}</div>
-      <div>Steepness: {currentData?.[40]}</div>
+      <HeightCard weatherDataLabel='Wave Height' weatherData={currentData?.[33]} />
+      <HeightCard weatherDataLabel='Swell Height' weatherData={currentData?.[34]} />
+      <PeriodCard weatherDataLabel='Swell Period' weatherData={currentData?.[35]} />
+      <HeightCard weatherDataLabel='Wind Wave Height' weatherData={currentData?.[36]} />
+      <PeriodCard weatherDataLabel='Wind Wave Period' weatherData={currentData?.[37]} />
+      <DirectionCard weatherDataLabel={'Swell Direction'} weatherData={currentData?.[38]} />
+      <DirectionCard weatherDataLabel={'Wind Wave Direction'} weatherData={currentData?.[39]} />
+      <DirectionCard weatherDataLabel={'Steepness'} weatherData={currentData?.[40]} />
     </div>
   );
 };

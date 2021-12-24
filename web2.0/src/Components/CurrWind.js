@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import WindDirectionCard from './weather-card/WindDirectionCard';
+import DirectionCard from './weather-card/DirectionCard';
 import WindSpeedCard from './weather-card/WindSpeedCard';
 
 const CurrWind = () => {
@@ -17,21 +17,21 @@ const CurrWind = () => {
     let val = Math.floor(Number(num) / 22.5 + 0.5);
     const arr = [
       'N',
-      'N-NE',
+      'NNE',
       'NE',
-      'E-NE',
+      'ENE',
       'E',
-      'E-SE',
+      'ESE',
       'SE',
-      'S-SE',
+      'SSE',
       'S',
-      'S-SW',
+      'SSW',
       'SW',
-      'W-SW',
+      'WSW',
       'W',
-      'W-NW',
+      'WNW',
       'NW',
-      'N-NW',
+      'NNW',
     ];
     return arr[val % 16];
   };
@@ -42,7 +42,7 @@ const CurrWind = () => {
 
   return (
     <div>
-      <WindDirectionCard
+      <DirectionCard
         weatherDataLabel={'Wind Direction'}
         weatherData={degToCompass(currentData?.[41])}
       />

@@ -17,6 +17,15 @@ function App() {
                 <CurrSwell className='CurrSwell' />
               </div>
             </div>
+            <div class='compass'>
+              <div class='direction'>
+                <p>
+                  SW<span>4 mph</span>
+                </p>
+              </div>
+              <div class='arrow sw'></div>
+              <div class='arrow ne'></div>
+            </div>
           </div>
           {/* <div className='historic-info'>
             <h3>Historic Rockaway Information</h3>
