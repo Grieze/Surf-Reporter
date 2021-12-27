@@ -3,8 +3,9 @@ import HistData from './HistData';
 const HistoricInfo = () => {
   return (
     <div>
-      <h3>Historic Rockaway Information</h3>
-      <h4>Data goes back 12 hours</h4>
+      <div className='historic-info-headings'>
+        <h3>Historic Rockaway Information</h3>
+      </div>
       <HistData className='hist-data' />
     </div>
   );

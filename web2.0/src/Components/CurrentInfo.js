@@ -8,7 +8,7 @@ const CurrentInfo = () => {
         <h3 className='current-header'>Current Rockaway Information</h3>
         <CurrentData />
       </div>
-      <Compasses />,
+      <Compasses />
     </div>
   );
 };

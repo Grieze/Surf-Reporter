@@ -76,6 +76,13 @@ code {
   justify-content: center;
 }
 
+.historic-info-headings {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .hist-data-container {
   width: 260px;
   margin: 5px;
