@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react';
 
+import HeightCard from './weather-card/HeightCard';
+import PeriodCard from './weather-card/PeriodCard';
+import DirectionCard from './weather-card/DirectionCard';
+
 const HistSwell = () => {
   const [currentData, setCurrentData] = useState();
 
@@ -34,21 +38,38 @@ const HistSwell = () => {
             <div>
               Time: {currentData?.[hourIndex + shift]}:{currentData?.[index + shift]}
             </div>
-            <div>
-              Wave Height: {(currentData?.[waveHeightIndex + shift] * 3.28084).toFixed(2)} feet
-            </div>
-            <div>
-              Swell Height: {(currentData?.[swellHeightIndex + shift] * 3.28084).toFixed(2)} meters
-            </div>
-            <div>Swell Period: {currentData?.[swellPeriodIndex + shift]} seconds</div>
-            <div>
-              Wind Wave Height: {(currentData?.[windWaveHeightIndex + shift] * 3.28084).toFixed(2)}
-              feet
-            </div>
-            <div>Wind Wave Period: {currentData?.[windWavePeriodIndex + shift]} seconds</div>
-            <div>Swell Direction: {currentData?.[swellDirectionIndex + shift]}</div>
-            <div>Wind Wave Direction: {currentData?.[windWaveDirectionIndex + shift]}</div>
-            <div>Steepness: {currentData?.[steepnessIndex + shift]}</div>
+            <HeightCard
+              weatherDataLabel='Wave Height'
+              weatherData={currentData?.[waveHeightIndex + shift]}
+            />
+            <HeightCard
+              weatherDataLabel='Swell Height'
+              weatherData={currentData?.[swellHeightIndex + shift]}
+            />
+            <PeriodCard
+              weatherDataLabel='Swell Period'
+              weatherData={currentData?.[swellPeriodIndex + shift]}
+            />
+            <HeightCard
+              weatherDataLabel='Wind Wave Height'
+              weatherData={currentData?.[windWaveHeightIndex + shift]}
+            />
+            <PeriodCard
+              weatherDataLabel='Wind Wave Period'
+              weatherData={currentData?.[windWavePeriodIndex + shift]}
+            />
+            <DirectionCard
+              weatherDataLabel={'Swell Direction'}
+              weatherData={currentData?.[swellDirectionIndex + shift]}
+            />
+            <DirectionCard
+              weatherDataLabel={'Wind Wave Direction'}
+              weatherData={currentData?.[windWaveDirectionIndex + shift]}
+            />
+            <DirectionCard
+              weatherDataLabel={'Steepness'}
+              weatherData={currentData?.[steepnessIndex + shift]}
+            />
           </div>
         </div>,
       );

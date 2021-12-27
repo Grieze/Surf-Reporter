@@ -11,7 +11,7 @@ body {
 }
 
 footer {
-  margin: 13% 0% 0% 0%;
+  margin: 5% 0% 0% 0%;
   font-family: 'Barlow', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -69,22 +69,27 @@ code {
   border-radius: 8px;
 }
 
-.historic-info {
+.historic-info-container {
   padding: 0px 0px 0px 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hist-data-container {
+  width: 260px;
+  margin: 5px;
+  background-color: #363636;
+  padding: 15px;
+  border-radius: 8px;
 }
 
 .page-header {
+  margin: 0 0 30px 0;
   padding: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background: rgb(255, 246, 0);
-  background: linear-gradient(
-    90deg,
-    rgba(255, 246, 0, 1) 0%,
-    rgba(3, 235, 63, 1) 50%,
-    rgba(35, 88, 228, 1) 100%
-  ); */
   background-color: #70b2d9;
   background-image: linear-gradient(315deg, #70b2d9 0%, #39e5b6 74%);
   border-radius: 8px;
@@ -97,6 +102,14 @@ code {
   margin: auto;
   justify-content: space-between;
   padding: 5px 15px 5px 15px;
+  font-weight: bold;
+}
+
+.time {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  font-weight: bold;
 }
 
 .wind-speed-card {
@@ -105,6 +118,7 @@ code {
   margin: auto;
   justify-content: space-between;
   padding: 5px 15px 5px 15px;
+  font-weight: bold;
 }
 
 .height-card {
@@ -113,6 +127,7 @@ code {
   margin: auto;
   justify-content: space-between;
   padding: 5px 15px 5px 15px;
+  font-weight: bold;
 }
 
 .period-card {
@@ -121,6 +136,7 @@ code {
   margin: auto;
   justify-content: space-between;
   padding: 5px 15px 5px 15px;
+  font-weight: bold;
 }
 
 .HistSwell {
@@ -144,13 +160,49 @@ code {
 }
 
 /* Compass Code */
-.compass {
-  margin: 20px;
-  display: block;
-  width: 300px;
-  height: 300px;
+.compasses {
+  display: flex;
+  flex-direction: column;
+}
+
+.compass-container {
+  margin: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.info-compass {
+  font-family: 'Barlow', Sans-Serif;
+  font-weight: bold;
+  margin: 0px;
+  background-color: #494949;
+  padding: 5px;
+  border-width: 5px;
+  border-color: #494949;
+  border-style: solid;
+  border-radius: 8px;
+}
+
+.extra-circle {
+  margin: 10px;
+  display: flex;
+  width: 120px;
+  height: 120px;
   border-radius: 100%;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.85);
+  background: #363636;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+
+.compass {
+  margin: 10px;
+  display: block;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
   background: #494949;
   position: relative;
   font-family: 'Barlow', Sans-Serif;
@@ -163,8 +215,8 @@ code {
   text-align: center;
   width: 100%;
   content: 'N';
-  font-size: 20px;
-  top: 10px;
+  font-size: 15px;
+  top: 4px;
 }
 
 .direction {
@@ -210,58 +262,58 @@ code {
   content: '';
   width: 0;
   height: 0;
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
-  border-bottom: 30px solid red;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 32px solid #70b2d9;
   position: absolute;
   top: -6px;
   left: 50%;
   margin-left: -5px;
   z-index: 99;
 }
-.arrow.nne {
+.arrow.NNE {
   transform: rotate(22.5deg);
 }
-.arrow.ne {
+.arrow.NE {
   transform: rotate(45deg);
 }
-.arrow.ene {
+.arrow.ENE {
   transform: rotate(67.5deg);
 }
-.arrow.e {
+.arrow.E {
   transform: rotate(90deg);
 }
-.arrow.ese {
+.arrow.ESE {
   transform: rotate(112.5deg);
 }
-.arrow.se {
+.arrow.SE {
   transform: rotate(135deg);
 }
-.arrow.sse {
+.arrow.SSE {
   transform: rotate(157.5deg);
 }
-.arrow.s {
+.arrow.S {
   transform: rotate(180deg);
 }
-.arrow.ssw {
+.arrow.SSW {
   transform: rotate(202.5deg);
 }
-.arrow.sw {
+.arrow.SW {
   transform: rotate(-135deg);
 }
-.arrow.wsw {
+.arrow.WSW {
   transform: rotate(-114.5deg);
 }
-.arrow.w {
+.arrow.W {
   transform: rotate(-90deg);
 }
-.arrow.wnw {
+.arrow.WNW {
   transform: rotate(-69.5deg);
 }
-.arrow.nw {
+.arrow.NW {
   transform: rotate(-45deg);
 }
-.arrow.nnw {
+.arrow.NNW {
   transform: rotate(-24.5deg);
 }
 /* End Compass code */

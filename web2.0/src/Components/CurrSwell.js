@@ -10,14 +10,13 @@ const CurrSwell = () => {
   const getData = async () => {
     const response = await fetch('http://localhost:8000/swell');
     const data = await response.json();
-    // console.log('data', data);
     setCurrentData(data);
   };
 
   useEffect(() => {
     getData();
   }, []);
-  //   console.log('currentData', currentData);
+
   return (
     <div>
       <HeightCard weatherDataLabel='Wave Height' weatherData={currentData?.[33]} />
