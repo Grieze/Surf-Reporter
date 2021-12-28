@@ -1,0 +1,326 @@
+:root {
+  background: #242424;
+}
+
+body {
+  margin: 0;
+  font-family: 'Barlow', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #ffffff;
+}
+
+footer {
+  margin: 5% 0% 0% 0%;
+  font-family: 'Barlow', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #70b2d9;
+  background-image: linear-gradient(315deg, #70b2d9 0%, #39e5b6 74%);
+  border-radius: 8px;
+  color: #ffffff;
+  padding: 10px;
+  font-weight: bold;
+}
+
+code {
+  font-family: 'Barlow', sans-serif;
+  color: #dea5a4;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+.current-info {
+  padding: 0px 15px 0px 0px;
+  display: flex;
+}
+
+.current-info-box {
+  margin: auto;
+  background-color: #494949;
+  padding: 5px;
+  border-color: #494949;
+  border-style: solid;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.current-container {
+  background-color: #363636;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.current-header {
+  margin: 0px 0px 10px 0px;
+  background-color: #494949;
+  padding: 5px;
+  border-width: 5px;
+  border-color: #494949;
+  border-style: solid;
+  border-radius: 8px;
+}
+
+.historic-info-container {
+  padding: 0px 0px 0px 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.historic-info-headings {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.hist-data-container {
+  width: 260px;
+  margin: 5px;
+  background-color: #363636;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.page-header {
+  margin: 0 0 30px 0;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #70b2d9;
+  background-image: linear-gradient(315deg, #70b2d9 0%, #39e5b6 74%);
+  border-radius: 8px;
+  color: #ffffff;
+}
+
+.direction-card {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  justify-content: space-between;
+  padding: 5px 15px 5px 15px;
+  font-weight: bold;
+}
+
+.time {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  font-weight: bold;
+}
+
+.wind-speed-card {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  justify-content: space-between;
+  padding: 5px 15px 5px 15px;
+  font-weight: bold;
+}
+
+.height-card {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  justify-content: space-between;
+  padding: 5px 15px 5px 15px;
+  font-weight: bold;
+}
+
+.period-card {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  justify-content: space-between;
+  padding: 5px 15px 5px 15px;
+  font-weight: bold;
+}
+
+.HistSwell {
+  display: flex;
+  padding: 15px;
+}
+
+.HistWind {
+  display: flex;
+  padding: 15px;
+}
+
+.CurrWind {
+  display: flex;
+  margin: 10px;
+}
+
+.CurrSwell {
+  display: flex;
+  margin: 10px;
+}
+
+/* Compass Code */
+.compasses {
+  display: flex;
+  flex-direction: column;
+}
+
+.compass-container {
+  margin: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.info-compass {
+  font-family: 'Barlow', Sans-Serif;
+  font-weight: bold;
+  margin: 0px;
+  background-color: #494949;
+  padding: 5px;
+  border-width: 5px;
+  border-color: #494949;
+  border-style: solid;
+  border-radius: 8px;
+}
+
+.extra-circle {
+  margin: 10px;
+  display: flex;
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+  background: #363636;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+
+.compass {
+  margin: 10px;
+  display: block;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  background: #494949;
+  position: relative;
+  font-family: 'Barlow', Sans-Serif;
+  color: #fff;
+  text-shadow: 1px 1px 1px black;
+}
+.compass::before {
+  font-weight: bold;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  content: 'N';
+  font-size: 15px;
+  top: 4px;
+}
+
+.direction {
+  height: 100%;
+  width: 100%;
+  display: block;
+  border-radius: 100%;
+}
+
+.direction > p {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  line-height: 80px;
+  display: block;
+  margin-top: -45px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.direction > p > span {
+  display: block;
+  line-height: normal;
+  margin-top: -24px;
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: normal;
+}
+
+.arrow {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  top: 0;
+}
+.arrow::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 32px solid #70b2d9;
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  margin-left: -5px;
+  z-index: 99;
+}
+.arrow.NNE {
+  transform: rotate(22.5deg);
+}
+.arrow.NE {
+  transform: rotate(45deg);
+}
+.arrow.ENE {
+  transform: rotate(67.5deg);
+}
+.arrow.E {
+  transform: rotate(90deg);
+}
+.arrow.ESE {
+  transform: rotate(112.5deg);
+}
+.arrow.SE {
+  transform: rotate(135deg);
+}
+.arrow.SSE {
+  transform: rotate(157.5deg);
+}
+.arrow.S {
+  transform: rotate(180deg);
+}
+.arrow.SSW {
+  transform: rotate(202.5deg);
+}
+.arrow.SW {
+  transform: rotate(-135deg);
+}
+.arrow.WSW {
+  transform: rotate(-114.5deg);
+}
+.arrow.W {
+  transform: rotate(-90deg);
+}
+.arrow.WNW {
+  transform: rotate(-69.5deg);
+}
+.arrow.NW {
+  transform: rotate(-45deg);
+}
+.arrow.NNW {
+  transform: rotate(-24.5deg);
+}
+/* End Compass code */
