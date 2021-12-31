@@ -1,8 +1,10 @@
-const WeatherCard = ({ weatherData, weatherDataLabel }) => {
+const WeatherCard = ({ className, weatherData, weatherDataLabel, extraData }) => {
   return (
-    <div>
+    <div className={className}>
       <span>{weatherDataLabel}: </span>
-      <span>{weatherData} </span>
+      <span>
+        {weatherData} {extraData}
+      </span>
     </div>
   );
 };

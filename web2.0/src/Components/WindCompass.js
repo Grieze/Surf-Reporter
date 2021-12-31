@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 
+import degToCompass from '../utils';
+
 const WindCompass = ({ dataLabel }) => {
   const [currentData, setCurrentData] = useState();
 
@@ -7,29 +9,6 @@ const WindCompass = ({ dataLabel }) => {
     const response = await fetch('http://localhost:8000/wind');
     const data = await response.json();
     setCurrentData(data);
-  };
-
-  const degToCompass = (num) => {
-    let val = Math.floor(Number(num) / 22.5 + 0.5);
-    const arr = [
-      'N',
-      'NNE',
-      'NE',
-      'ENE',
-      'E',
-      'ESE',
-      'SE',
-      'SSE',
-      'S',
-      'SSW',
-      'SW',
-      'WSW',
-      'W',
-      'WNW',
-      'NW',
-      'NNW',
-    ];
-    return arr[val % 16];
   };
 
   useEffect(() => {

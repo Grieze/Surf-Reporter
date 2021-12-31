@@ -1,9 +1,6 @@
 import { useState, useEffect } from 'react';
-
-import HeightCard from './weather-card/HeightCard';
-import PeriodCard from './weather-card/PeriodCard';
-import DirectionCard from './weather-card/DirectionCard';
-import WindSpeedCard from './weather-card/WindSpeedCard';
+import WeatherCard from './weather-card/WeatherCard';
+import degToCompass from '../utils';
 
 const HistData = () => {
   const [currentData, setCurrentData] = useState();
@@ -19,29 +16,6 @@ const HistData = () => {
   useEffect(() => {
     getData();
   }, []);
-
-  const degToCompass = (num) => {
-    let val = Math.floor(Number(num) / 22.5 + 0.5);
-    const arr = [
-      'N',
-      'NNE',
-      'NE',
-      'ENE',
-      'E',
-      'ESE',
-      'SE',
-      'SSE',
-      'S',
-      'SSW',
-      'SW',
-      'WSW',
-      'W',
-      'WNW',
-      'NW',
-      'NNW',
-    ];
-    return arr[val % 16];
-  };
 
   const makeHistData = () => {
     let windIndex = currentData?.windData.findIndex((val, i) => {
@@ -74,53 +48,68 @@ const HistData = () => {
             {currentData?.windData[hourIndex + windShift]}:
             {currentData?.windData[windIndex + windShift]}
           </div>
-          <DirectionCard
+          <WeatherCard
             weatherDataLabel={'Wind Direction'}
             weatherData={degToCompass(currentData?.windData[directionIndex + windShift])}
+            extraData={''}
             className='direction-card'
           />
-          <WindSpeedCard
+          <WeatherCard
             weatherDataLabel={'Wind Speed'}
             weatherData={currentData?.windData[speedIndex + windShift]}
-            className='.wind-speed-card'
+            extraData={'mph'}
+            className='wind-speed-card'
           />
-          <HeightCard
+          <WeatherCard
             weatherDataLabel='Wave Height'
             weatherData={currentData?.swellData[waveHeightIndex + swellShift]}
-            className='.height-card'
+            extraData={'ft'}
+            className='height-card'
           />
-          <HeightCard
+          <WeatherCard
             weatherDataLabel='Swell Height'
             weatherData={currentData?.swellData[swellHeightIndex + swellShift]}
-            className='.height-card'
+            extraData={'ft'}
+            className='height-card'
           />
-          <PeriodCard
+          <WeatherCard
             weatherDataLabel='Swell Period'
             weatherData={currentData?.swellData[swellPeriodIndex + swellShift]}
+            extraData={'secs'}
+            className={'period-card'}
           />
-          <HeightCard
+          <WeatherCard
             weatherDataLabel='Wind Wave Height'
             weatherData={currentData?.swellData[windWaveHeightIndex + swellShift]}
-            className='.height-card'
+            extraData={'ft'}
+            className='height-card'
           />
-          <PeriodCard
+          <WeatherCard
             weatherDataLabel='Wind Wave Period'
             weatherData={currentData?.swellData[windWavePeriodIndex + swellShift]}
-            className='.period-card'
+            extraData={'secs'}
+            className='period-card'
           />
-          <DirectionCard
+          <WeatherCard
             weatherDataLabel={'Swell Direction'}
             weatherData={currentData?.swellData[swellDirectionIndex + swellShift]}
+            extraData={''}
             className='direction-card'
           />
-          <DirectionCard
+          <WeatherCard
             weatherDataLabel={'Wind Wave Direction'}
             weatherData={currentData?.swellData[windWaveDirectionIndex + swellShift]}
+            extraData={''}
             className='direction-card'
           />
-          <DirectionCard
+          <WeatherCard
             weatherDataLabel={'Steepness'}
-            weatherData={currentData?.swellData[steepnessIndex + swellShift]}
+            weatherData={
+              currentData?.swellData[steepnessIndex + swellShift] === 'N/A'
+                ? 'FLAT'
+                : currentData?.swellData[steepnessIndex + swellShift]
+            }
+            extraData={''}
             className='direction-card'
           />
         </div>,
