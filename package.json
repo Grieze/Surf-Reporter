@@ -4,6 +4,7 @@
     "description": "This is a simple web dev project that pulls data used to determine whether a surf spot is good or not given the data.",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
+        "installAll": "concurrently 'cd backend && npm install' 'cd web2.0 && npm install'",
         "start": "concurrently 'cd backend && npm start' 'cd web2.0 && npm start'"
     },
     "repository": {
