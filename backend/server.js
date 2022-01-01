@@ -1,8 +1,6 @@
-const axios = require('axios');
-const express = require('express');
-const cors = require('cors');
-const scrape = require('./webscraper/dataScraperAPI');
-const scrapeCurrWind = require('./webscraper/scrapeCurrWind');
+import axios from 'axios';
+import express from 'express';
+import cors from 'cors';
 
 const app = express();
 const port = '8000';
@@ -49,13 +47,6 @@ app.get('/swell', async (req, res) => {
   }
 });
 
-app.get('/reports', async (req, res) => {
-  // Demo of how to incorporate business logic to an endpoint
-  console.log('User just accessed index.html');
-  const data = await scrape();
-  return res.send(data);
-});
-
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Backend is listening on http://localhost:${port}`);
 });
