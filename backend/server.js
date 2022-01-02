@@ -1,12 +1,6 @@
-// <<<<<<< HEAD
-const axios = require('axios');
-const express = require('express');
-const cors = require('cors');
-// =======
 import axios from 'axios';
 import express from 'express';
 import cors from 'cors';
-// >>>>>>> main
 
 const app = express();
 const port = '8000';
