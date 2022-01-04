@@ -1,7 +1,7 @@
 import axios from 'axios';
 import express from 'express';
 import cors from 'cors';
-// import degToCompass from '../web2.0/src/utils';
+import degToCompass from './utils.js';
 
 const app = express();
 const port = '8000';
@@ -45,7 +45,7 @@ app.get('/wind', async (req, res) => {
       windData.push({
         time: { hour: table[hourIndex + shift], min: table[windIndex + shift], className: 'time' },
         windDirection: {
-          data: table[directionIndex + shift],
+          data: degToCompass(table[directionIndex + shift]),
           unit: '',
           className: 'direction-card',
         },

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import WeatherCard from './weather-card/WeatherCard';
-import degToCompass from '../utils';
 
 const HistData = () => {
   const [currentData, setCurrentData] = useState();
@@ -33,7 +32,7 @@ const HistData = () => {
           />
           <WeatherCard
             weatherDataLabel={'Wind Direction'}
-            weatherData={degToCompass(currentData?.windData[i].windDirection.data)}
+            weatherData={currentData?.windData[i].windDirection.data}
             extraData={currentData?.windData[i].windDirection.unit}
             className={currentData?.windData[i].windDirection.className}
           />

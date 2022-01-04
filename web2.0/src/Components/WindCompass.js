@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 
-import degToCompass from '../utils';
-
 const WindCompass = ({ dataLabel }) => {
   const [currentData, setCurrentData] = useState();
 
@@ -24,13 +22,13 @@ const WindCompass = ({ dataLabel }) => {
         <div className='compass'>
           <div className='direction'>
             <p>
-              {degToCompass(currentData?.[0].windDirection.data)}
+              {currentData?.[0].windDirection.data}
               <span>
                 {currentData?.[0].windSpeed.data} {currentData?.[0].windSpeed.unit}
               </span>
             </p>
           </div>
-          <div className={`arrow ${degToCompass(currentData?.[0].windDirection.data)}`}></div>
+          <div className={`arrow ${currentData?.[0].windDirection.data}`}></div>
         </div>
       </div>
     </div>
