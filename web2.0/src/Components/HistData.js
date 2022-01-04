@@ -18,99 +18,82 @@ const HistData = () => {
   }, []);
 
   const makeHistData = () => {
-    let windIndex = currentData?.windData.findIndex((val, i) => {
-      if (val == '40') {
-        return i;
-      }
-      i++;
-    });
-
-    const directionIndex = windIndex + 1;
-    const speedIndex = windIndex + 2;
-    const hourIndex = windIndex - 1;
-    const index = 32;
-    const waveHeightIndex = index + 1;
-    const swellHeightIndex = index + 2;
-    const swellPeriodIndex = index + 3;
-    const windWaveHeightIndex = index + 4;
-    const windWavePeriodIndex = index + 5;
-    const swellDirectionIndex = index + 6;
-    const windWaveDirectionIndex = index + 7;
-    const steepnessIndex = index + 8;
     const histData = [];
 
     for (let i = 0; i < 12; i++) {
-      let windShift = i * 108;
-      let swellShift = i * 14;
       histData.push(
         <div key={i} className='hist-data-container'>
-          <div className='time'>
-            {currentData?.windData[hourIndex + windShift]}:
-            {currentData?.windData[windIndex + windShift]}
-          </div>
+          <WeatherCard
+            weatherDataLabel={''}
+            weatherData={
+              currentData?.windData[i].time.hour + ':' + currentData?.windData[i].time.min
+            }
+            extraData={''}
+            className={currentData?.windData[i].time.className}
+          />
           <WeatherCard
             weatherDataLabel={'Wind Direction'}
-            weatherData={degToCompass(currentData?.windData[directionIndex + windShift])}
-            extraData={''}
-            className='direction-card'
+            weatherData={degToCompass(currentData?.windData[i].windDirection.data)}
+            extraData={currentData?.windData[i].windDirection.unit}
+            className={currentData?.windData[i].windDirection.className}
           />
           <WeatherCard
             weatherDataLabel={'Wind Speed'}
-            weatherData={currentData?.windData[speedIndex + windShift]}
-            extraData={'mph'}
-            className='wind-speed-card'
+            weatherData={currentData?.windData[i].windSpeed.data}
+            extraData={currentData?.windData[i].windSpeed.unit}
+            className={currentData?.windData[i].windSpeed.className}
           />
           <WeatherCard
             weatherDataLabel='Wave Height'
-            weatherData={currentData?.swellData[waveHeightIndex + swellShift]}
-            extraData={'ft'}
-            className='height-card'
+            weatherData={currentData?.swellData[i].waveHeight.data}
+            extraData={currentData?.swellData[i].waveHeight.unit}
+            className={currentData?.swellData[i].waveHeight.className}
           />
           <WeatherCard
             weatherDataLabel='Swell Height'
-            weatherData={currentData?.swellData[swellHeightIndex + swellShift]}
-            extraData={'ft'}
-            className='height-card'
+            weatherData={currentData?.swellData[i].swellHeight.data}
+            extraData={currentData?.swellData[i].swellHeight.unit}
+            className={currentData?.swellData[i].swellHeight.className}
           />
           <WeatherCard
             weatherDataLabel='Swell Period'
-            weatherData={currentData?.swellData[swellPeriodIndex + swellShift]}
-            extraData={'secs'}
-            className={'period-card'}
+            weatherData={currentData?.swellData[i].swellPeriod.data}
+            extraData={currentData?.swellData[i].swellPeriod.unit}
+            className={currentData?.swellData[i].swellPeriod.className}
           />
           <WeatherCard
             weatherDataLabel='Wind Wave Height'
-            weatherData={currentData?.swellData[windWaveHeightIndex + swellShift]}
-            extraData={'ft'}
-            className='height-card'
+            weatherData={currentData?.swellData[i].windWaveHeight.data}
+            extraData={currentData?.swellData[i].windWaveHeight.unit}
+            className={currentData?.swellData[i].windWaveHeight.className}
           />
           <WeatherCard
             weatherDataLabel='Wind Wave Period'
-            weatherData={currentData?.swellData[windWavePeriodIndex + swellShift]}
-            extraData={'secs'}
-            className='period-card'
+            weatherData={currentData?.swellData[i].windWavePeriod.data}
+            extraData={currentData?.swellData[i].windWavePeriod.unit}
+            className={currentData?.swellData[i].windWavePeriod.className}
           />
           <WeatherCard
             weatherDataLabel={'Swell Direction'}
-            weatherData={currentData?.swellData[swellDirectionIndex + swellShift]}
-            extraData={''}
-            className='direction-card'
+            weatherData={currentData?.swellData[i].swellDirection.data}
+            extraData={currentData?.swellData[i].swellDirection.unit}
+            className={currentData?.swellData[i].swellDirection.className}
           />
           <WeatherCard
             weatherDataLabel={'Wind Wave Direction'}
-            weatherData={currentData?.swellData[windWaveDirectionIndex + swellShift]}
-            extraData={''}
-            className='direction-card'
+            weatherData={currentData?.swellData[i].windWaveDirection.data}
+            extraData={currentData?.swellData[i].windWaveDirection.unit}
+            className={currentData?.swellData[i].windWaveDirection.className}
           />
           <WeatherCard
             weatherDataLabel={'Steepness'}
             weatherData={
-              currentData?.swellData[steepnessIndex + swellShift] === 'N/A'
+              currentData?.swellData[i].steepness.data === 'N/A'
                 ? 'FLAT'
-                : currentData?.swellData[steepnessIndex + swellShift]
+                : currentData?.swellData[i].steepness.data
             }
-            extraData={''}
-            className='direction-card'
+            extraData={currentData?.swellData[i].steepness.unit}
+            className={currentData?.swellData[i].steepness.className}
           />
         </div>,
       );

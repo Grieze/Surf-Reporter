@@ -24,11 +24,13 @@ const WindCompass = ({ dataLabel }) => {
         <div className='compass'>
           <div className='direction'>
             <p>
-              {degToCompass(currentData?.[41])}
-              <span>{Math.floor(currentData?.[42] / 0.44704)} mph</span>
+              {degToCompass(currentData?.[0].windDirection.data)}
+              <span>
+                {currentData?.[0].windSpeed.data} {currentData?.[0].windSpeed.unit}
+              </span>
             </p>
           </div>
-          <div className={`arrow ${degToCompass(currentData?.[41])}`}></div>
+          <div className={`arrow ${degToCompass(currentData?.[0].windDirection.data)}`}></div>
         </div>
       </div>
     </div>

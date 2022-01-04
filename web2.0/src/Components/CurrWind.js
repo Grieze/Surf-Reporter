@@ -20,15 +20,15 @@ const CurrWind = () => {
     <div>
       <WeatherCard
         weatherDataLabel={'Wind Direction'}
-        weatherData={degToCompass(currentData?.[41])}
-        extraData={''}
-        className={'direction-card'}
+        weatherData={degToCompass(currentData?.[0].windDirection.data)}
+        extraData={currentData?.[0].windDirection.unit}
+        className={currentData?.[0].windDirection.className}
       />
       <WeatherCard
         weatherDataLabel='Wind Speed'
-        weatherData={Math.floor(currentData?.[42] / 0.44704)}
-        extraData={'mph'}
-        className='wind-speed-card'
+        weatherData={currentData?.[0].windSpeed.data}
+        extraData={currentData?.[0].windSpeed.unit}
+        className={currentData?.[0].windSpeed.className}
       />
     </div>
   );

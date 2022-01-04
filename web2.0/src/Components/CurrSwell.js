@@ -13,56 +13,57 @@ const CurrSwell = () => {
   useEffect(() => {
     getData();
   }, []);
-
   return (
     <div>
       <WeatherCard
         weatherDataLabel='Wave Height'
-        weatherData={currentData?.[33]}
-        extraData={'ft'}
-        className={'height-card'}
+        weatherData={currentData?.[0].waveHeight.data}
+        extraData={currentData?.[0].waveHeight.unit}
+        className={currentData?.[0].waveHeight.className}
       />
       <WeatherCard
         weatherDataLabel='Swell Height'
-        weatherData={currentData?.[34]}
-        extraData={'ft'}
-        className={'height-card'}
+        weatherData={currentData?.[0].swellHeight.data}
+        extraData={currentData?.[0].swellHeight.unit}
+        className={currentData?.[0].swellHeight.className}
       />
       <WeatherCard
         weatherDataLabel='Swell Period'
-        weatherData={currentData?.[35]}
-        extraData={'secs'}
-        className={'period-card'}
+        weatherData={currentData?.[0].swellPeriod.data}
+        extraData={currentData?.[0].swellPeriod.unit}
+        className={currentData?.[0].swellPeriod.className}
       />
       <WeatherCard
         weatherDataLabel='Wind Wave Height'
-        weatherData={currentData?.[36]}
-        extraData={'ft'}
-        className={'height-card'}
+        weatherData={currentData?.[0].windWaveHeight.data}
+        extraData={currentData?.[0].windWaveHeight.unit}
+        className={currentData?.[0].windWaveHeight.className}
       />
       <WeatherCard
         weatherDataLabel='Wind Wave Period'
-        weatherData={currentData?.[37]}
-        extraData={'secs'}
-        className={'period-card'}
+        weatherData={currentData?.[0].windWavePeriod.data}
+        extraData={currentData?.[0].windWavePeriod.unit}
+        className={currentData?.[0].windWavePeriod.className}
       />
       <WeatherCard
         weatherDataLabel={'Swell Direction'}
-        weatherData={currentData?.[38]}
-        extraData={''}
-        className={'direction-card'}
+        weatherData={currentData?.[0].swellDirection.data}
+        extraData={currentData?.[0].swellDirection.unit}
+        className={currentData?.[0].swellDirection.className}
       />
       <WeatherCard
         weatherDataLabel={'Wind Wave Direction'}
-        weatherData={currentData?.[39]}
-        extraData={''}
-        className={'direction-card'}
+        weatherData={currentData?.[0].windWaveDirection.data}
+        extraData={currentData?.[0].windWaveDirection.unit}
+        className={currentData?.[0].windWaveDirection.className}
       />
       <WeatherCard
         weatherDataLabel={'Steepness'}
-        weatherData={currentData?.[40] === 'N/A' ? 'FLAT' : currentData?.[40]}
-        extraData={''}
-        className={'direction-card'}
+        weatherData={
+          currentData?.[0].steepness.data === 'N/A' ? 'FLAT' : currentData?.[0].steepness.data
+        }
+        extraData={currentData?.[0].steepness.unit}
+        className={currentData?.[0].steepness.className}
       />
     </div>
   );
