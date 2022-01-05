@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import WeatherCard from './weather-card/WeatherCard';
+import WeatherCard from '../weather-card/WeatherCard';
 
 const CurrWind = () => {
   const [currentData, setCurrentData] = useState();
@@ -18,13 +18,13 @@ const CurrWind = () => {
   return (
     <div>
       <WeatherCard
-        weatherDataLabel={'Wind Direction'}
+        weatherDataLabel={currentData?.[0].windDirection.dataLabel}
         weatherData={currentData?.[0].windDirection.data}
         extraData={currentData?.[0].windDirection.unit}
         className={currentData?.[0].windDirection.className}
       />
       <WeatherCard
-        weatherDataLabel='Wind Speed'
+        weatherDataLabel={currentData?.[0].windSpeed.dataLabel}
         weatherData={currentData?.[0].windSpeed.data}
         extraData={currentData?.[0].windSpeed.unit}
         className={currentData?.[0].windSpeed.className}

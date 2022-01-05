@@ -45,11 +45,13 @@ app.get('/wind', async (req, res) => {
       windData.push({
         time: { hour: table[hourIndex + shift], min: table[windIndex + shift], className: 'time' },
         windDirection: {
+          dataLabel: 'Wind Direction',
           data: degToCompass(table[directionIndex + shift]),
           unit: '',
           className: 'direction-card',
         },
         windSpeed: {
+          dataLabel: 'Wind Speed',
           data: Math.floor(table[speedIndex + shift] / 0.44704),
           unit: 'mph',
           className: 'wind-speed-card',
@@ -88,41 +90,49 @@ app.get('/swell', async (req, res) => {
       let swellShift = i * 14;
       swellData.push({
         waveHeight: {
+          dataLabel: 'Wave Height',
           data: table[waveHeightIndex + swellShift],
           unit: 'ft',
           className: 'height-card',
         },
         swellHeight: {
+          dataLabel: 'Swell Height',
           data: table[swellHeightIndex + swellShift],
           unit: 'ft',
           className: 'height-card',
         },
         swellPeriod: {
+          dataLabel: 'Swell Period',
           data: table[swellPeriodIndex + swellShift],
           unit: 'secs',
           className: 'period-card',
         },
         windWaveHeight: {
+          dataLabel: 'Wind Wave Height',
           data: table[windWaveHeightIndex + swellShift],
           unit: 'ft',
           className: 'height-card',
         },
         windWavePeriod: {
+          dataLabel: 'Wind Wave Period',
           data: table[windWavePeriodIndex + swellShift],
           unit: 'secs',
           className: 'period-card',
         },
         swellDirection: {
+          dataLabel: 'Swell Direction',
           data: table[swellDirectionIndex + swellShift],
           unit: '',
           className: 'direction-card',
         },
         windWaveDirection: {
+          dataLabel: 'Wind Wave Direction',
           data: table[windWaveDirectionIndex + swellShift],
           unit: '',
           className: 'direction-card',
         },
         steepness: {
+          dataLabel: 'Steepness',
           data: table[steepnessIndex + swellShift],
           unit: '',
           className: 'direction-card',

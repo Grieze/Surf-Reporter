@@ -1,4 +1,4 @@
-import HistData from './HistData';
+import HistData from '../Historic/HistData';
 
 const HistoricInfo = () => {
   return (

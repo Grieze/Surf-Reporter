@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
-import WeatherCard from './weather-card/WeatherCard';
+import WeatherCard from '../weather-card/WeatherCard';
+
+const NUM_DATA_POINTS = 12;
 
 const HistData = () => {
   const [currentData, setCurrentData] = useState();
@@ -19,7 +21,7 @@ const HistData = () => {
   const makeHistData = () => {
     const histData = [];
 
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < NUM_DATA_POINTS; i++) {
       histData.push(
         <div key={i} className='hist-data-container'>
           <WeatherCard
@@ -31,43 +33,43 @@ const HistData = () => {
             className={currentData?.windData[i].time.className}
           />
           <WeatherCard
-            weatherDataLabel={'Wind Direction'}
+            weatherDataLabel={currentData?.windData[i].windDirection.dataLabel}
             weatherData={currentData?.windData[i].windDirection.data}
             extraData={currentData?.windData[i].windDirection.unit}
             className={currentData?.windData[i].windDirection.className}
           />
           <WeatherCard
-            weatherDataLabel={'Wind Speed'}
+            weatherDataLabel={currentData?.windData[i].windSpeed.dataLabel}
             weatherData={currentData?.windData[i].windSpeed.data}
             extraData={currentData?.windData[i].windSpeed.unit}
             className={currentData?.windData[i].windSpeed.className}
           />
           <WeatherCard
-            weatherDataLabel='Wave Height'
+            weatherDataLabel={currentData?.swellData[i].waveHeight.dataLabel}
             weatherData={currentData?.swellData[i].waveHeight.data}
             extraData={currentData?.swellData[i].waveHeight.unit}
             className={currentData?.swellData[i].waveHeight.className}
           />
           <WeatherCard
-            weatherDataLabel='Swell Height'
+            weatherDataLabel={currentData?.swellData[i].swellHeight.dataLabel}
             weatherData={currentData?.swellData[i].swellHeight.data}
             extraData={currentData?.swellData[i].swellHeight.unit}
             className={currentData?.swellData[i].swellHeight.className}
           />
           <WeatherCard
-            weatherDataLabel='Swell Period'
+            weatherDataLabel={currentData?.swellData[i].swellPeriod.dataLabel}
             weatherData={currentData?.swellData[i].swellPeriod.data}
             extraData={currentData?.swellData[i].swellPeriod.unit}
             className={currentData?.swellData[i].swellPeriod.className}
           />
           <WeatherCard
-            weatherDataLabel='Wind Wave Height'
+            weatherDataLabel={currentData?.swellData[i].windWaveHeight.dataLabel}
             weatherData={currentData?.swellData[i].windWaveHeight.data}
             extraData={currentData?.swellData[i].windWaveHeight.unit}
             className={currentData?.swellData[i].windWaveHeight.className}
           />
           <WeatherCard
-            weatherDataLabel='Wind Wave Period'
+            weatherDataLabel={currentData?.swellData[i].windWavePeriod.dataLabel}
             weatherData={currentData?.swellData[i].windWavePeriod.data}
             extraData={currentData?.swellData[i].windWavePeriod.unit}
             className={currentData?.swellData[i].windWavePeriod.className}
@@ -79,13 +81,13 @@ const HistData = () => {
             className={currentData?.swellData[i].swellDirection.className}
           />
           <WeatherCard
-            weatherDataLabel={'Wind Wave Direction'}
+            weatherDataLabel={currentData?.swellData[i].windWaveDirection.dataLabel}
             weatherData={currentData?.swellData[i].windWaveDirection.data}
             extraData={currentData?.swellData[i].windWaveDirection.unit}
             className={currentData?.swellData[i].windWaveDirection.className}
           />
           <WeatherCard
-            weatherDataLabel={'Steepness'}
+            weatherDataLabel={currentData?.swellData[i].steepness.dataLabel}
             weatherData={
               currentData?.swellData[i].steepness.data === 'N/A'
                 ? 'FLAT'
