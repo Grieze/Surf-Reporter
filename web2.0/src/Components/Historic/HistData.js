@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import WeatherCard from '../weather-card/WeatherCard';
 
-const NUM_DATA_POINTS = 12;
-
 const HistData = () => {
   const [currentData, setCurrentData] = useState();
 
@@ -21,15 +19,15 @@ const HistData = () => {
   const makeHistData = () => {
     const histData = [];
 
-    for (let i = 0; i < NUM_DATA_POINTS; i++) {
+    for (let i = 0; i < currentData.windData.length; i++) {
       histData.push(
         <div key={i} className='hist-data-container'>
           <WeatherCard
-            weatherDataLabel={''}
+            weatherDataLabel={currentData?.windData[i].time.dataLabel}
             weatherData={
               currentData?.windData[i].time.hour + ':' + currentData?.windData[i].time.min
             }
-            extraData={''}
+            extraData={currentData?.windData[i].time.unit}
             className={currentData?.windData[i].time.className}
           />
           <WeatherCard
@@ -75,7 +73,7 @@ const HistData = () => {
             className={currentData?.swellData[i].windWavePeriod.className}
           />
           <WeatherCard
-            weatherDataLabel={'Swell Direction'}
+            weatherDataLabel={currentData?.swellData[i].swellDirection.dataLabel}
             weatherData={currentData?.swellData[i].swellDirection.data}
             extraData={currentData?.swellData[i].swellDirection.unit}
             className={currentData?.swellData[i].swellDirection.className}
@@ -103,7 +101,7 @@ const HistData = () => {
     // end makeHistData
   };
 
-  return <div className='historic-info-container'>{makeHistData()}</div>;
+  return <div className='historic-info-container'>{currentData && makeHistData()}</div>;
   //end HistData
 };
 
