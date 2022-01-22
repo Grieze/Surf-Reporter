@@ -1,5 +1,5 @@
-import CurrentInfo from './Components/CurrentInfo';
-import HistoricInfo from './Components/HistoricInfo';
+import CurrentInfo from './Components/Current/CurrentInfo';
+import HistoricInfo from './Components/Historic/HistoricInfo';
 
 function App() {
   return (

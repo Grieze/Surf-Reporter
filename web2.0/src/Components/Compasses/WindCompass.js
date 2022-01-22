@@ -9,29 +9,6 @@ const WindCompass = ({ dataLabel }) => {
     setCurrentData(data);
   };
 
-  const degToCompass = (num) => {
-    let val = Math.floor(Number(num) / 22.5 + 0.5);
-    const arr = [
-      'N',
-      'NNE',
-      'NE',
-      'ENE',
-      'E',
-      'ESE',
-      'SE',
-      'SSE',
-      'S',
-      'SSW',
-      'SW',
-      'WSW',
-      'W',
-      'WNW',
-      'NW',
-      'NNW',
-    ];
-    return arr[val % 16];
-  };
-
   useEffect(() => {
     getData();
   }, []);
@@ -45,11 +22,13 @@ const WindCompass = ({ dataLabel }) => {
         <div className='compass'>
           <div className='direction'>
             <p>
-              {degToCompass(currentData?.[41])}
-              <span>{Math.floor(currentData?.[42] / 0.44704)} mph</span>
+              {currentData?.[0].windDirection.data}
+              <span>
+                {currentData?.[0].windSpeed.data} {currentData?.[0].windSpeed.unit}
+              </span>
             </p>
           </div>
-          <div className={`arrow ${degToCompass(currentData?.[41])}`}></div>
+          <div className={`arrow ${currentData?.[0].windDirection.data}`}></div>
         </div>
       </div>
     </div>

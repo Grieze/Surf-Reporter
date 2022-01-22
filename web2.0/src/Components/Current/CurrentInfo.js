@@ -1,5 +1,5 @@
-import CurrentData from './CurrentData';
-import Compasses from './Compasses';
+import CurrentData from '../Current/CurrentData';
+import Compasses from '../Compasses/Compasses';
 
 const CurrentInfo = () => {
   return (

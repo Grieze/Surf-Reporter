@@ -22,11 +22,11 @@ const SwellCompass = ({ dataLabel }) => {
         <div className='compass'>
           <div className='direction'>
             <p>
-              {currentData?.[38]}
-              <span>{(currentData?.[34] * 3.28084).toFixed(2)} ft</span>
+              {currentData?.[0].swellDirection.data}
+              <span>{currentData?.[0].swellHeight.data} ft</span>
             </p>
           </div>
-          <div className={`arrow ${currentData?.[38]}`}></div>
+          <div className={`arrow ${currentData?.[0].swellDirection.data}`}></div>
         </div>
       </div>
     </div>
