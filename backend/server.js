@@ -10,6 +10,13 @@ const message = 'Welcome to the beginning of the Surf Reporter API!';
 const WIND = 'https://www.ndbc.noaa.gov/data/realtime2/44065.txt';
 const SWELL = 'https://www.ndbc.noaa.gov/data/realtime2/44065.spec';
 const ROW_LIMIT = 12;
+// Sync time is when wind data and swell data are lined up and synchronous
+// 40 because wind is updated every 10 mins, swell is updated every hour
+// at 40 they are in sync
+const SYNC_TIME = '40';
+// WIND and SWELL SKIP are how many positions we skip in order to get to the next necessary data
+const WIND_SKIP = 108;
+const SWELL_SKIP = 14;
 
 app.use(cors());
 
@@ -31,7 +38,7 @@ app.get('/wind', async (req, res) => {
     const windData = [];
 
     let windIndex = table.findIndex((val, i) => {
-      if (val == '40') {
+      if (val == SYNC_TIME) {
         return i;
       }
       i++;
@@ -42,7 +49,7 @@ app.get('/wind', async (req, res) => {
     const hourIndex = windIndex - 1;
 
     for (let i = 0; i < ROW_LIMIT; i++) {
-      let shift = i * 108;
+      let shift = i * WIND_SKIP;
       windData.push({
         time: {
           hour: table[hourIndex + shift],
@@ -59,7 +66,7 @@ app.get('/wind', async (req, res) => {
         },
         windSpeed: {
           dataLabel: 'Wind Speed',
-          data: Math.floor(table[speedIndex + shift] / 0.44704),
+          data: metersToMiles(table[speedIndex + shift]),
           unit: 'mph',
           className: 'wind-speed-card',
         },
@@ -81,6 +88,7 @@ app.get('/swell', async (req, res) => {
       return entry.trim() != '';
     });
 
+    // at index 32 in the array of data, that is the first row of data we want to start from
     const index = 32;
     const waveHeightIndex = index + 1;
     const swellHeightIndex = index + 2;
@@ -93,7 +101,7 @@ app.get('/swell', async (req, res) => {
     const swellData = [];
 
     for (let i = 0; i < ROW_LIMIT; i++) {
-      let swellShift = i * 14;
+      let swellShift = i * SWELL_SKIP;
       swellData.push({
         waveHeight: {
           dataLabel: 'Wave Height',
@@ -155,3 +163,7 @@ app.get('/swell', async (req, res) => {
 app.listen(port, () => {
   console.log(`Backend is listening on http://localhost:${port}`);
 });
+
+const metersToMiles = (val) => {
+  return Math.floor(val / 0.44704);
+};

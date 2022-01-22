@@ -7,7 +7,6 @@ const CurrWind = () => {
   const getData = async () => {
     const response = await fetch('http://localhost:8000/wind');
     const data = await response.json();
-    // console.log('data', data);
     setCurrentData(data);
   };
 
