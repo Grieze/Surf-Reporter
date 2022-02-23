@@ -4,6 +4,7 @@ import requests
 SOURCE = 'https://www.ndbc.noaa.gov/data/realtime2/'
 SEARCH_START_INDEX = 3
 STATION_ID_LENGTH = 5
+STATION_ID_COLUMN_INDEX = 1
 validBuoys = []
 # should be 355
 res = requests.get(SOURCE).text
@@ -15,7 +16,7 @@ for row in table.findAll("tr"):
 # 5 data extensions that show if buoy collects wave data or not:
 # data_spec, spec, swdir, swdir2, swr1, swr2, 
 for index in range(SEARCH_START_INDEX, (len(rows)-1)):
-    text = (rows[index][1]).text
+    text = (rows[index][STATION_ID_COLUMN_INDEX]).text
     if (text.__contains__("data_spec") or 
         text.__contains__("spec") or 
         text.__contains__("swdir") or 
