@@ -1,13 +1,13 @@
 from bs4 import BeautifulSoup
 import requests
 
-SOURCE = 'https://www.ndbc.noaa.gov/data/realtime2/'
+REAL_TIME_DATA_LIST = 'https://www.ndbc.noaa.gov/data/realtime2/'
+DIF_STATION_LIST = 'https://sdf.ndbc.noaa.gov/stations.shtml'
 SEARCH_START_INDEX = 3
 STATION_ID_LENGTH = 5
 STATION_ID_COLUMN_INDEX = 1
 validBuoys = []
-# should be 355
-res = requests.get(SOURCE).text
+res = requests.get(REAL_TIME_DATA_LIST).text
 bs = BeautifulSoup(res, "html.parser")
 table = bs.find("table")
 rows=list()
@@ -28,5 +28,19 @@ for index in range(SEARCH_START_INDEX, (len(rows)-1)):
         else:
             # print(text[0:STATION_ID_LENGTH])
             validBuoys.append(text[0:STATION_ID_LENGTH])
-        
 print("length validBuoys:", len(validBuoys))
+
+SENSOR_COLUMN = 5
+ID_COLUMN = 0
+res = requests.get(DIF_STATION_LIST).text
+bs = BeautifulSoup(res, "html.parser")
+table = bs.findAll("tr", class_="stndata")
+waveBuoys = list()
+for row in table:
+    struct = row.findAll("td")
+    if struct[SENSOR_COLUMN].__contains__("Waves"):
+        waveBuoys.append(struct[ID_COLUMN].text)
+print("length waveBuoys:",len(waveBuoys))
+
+diff = list(set(waveBuoys) - set(validBuoys))
+print(len(diff))
