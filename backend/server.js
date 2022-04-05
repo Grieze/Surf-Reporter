@@ -15,17 +15,23 @@ const MONTH_COL = 1;
 const DAY_COL = 2;
 const HOUR_COL = 3;
 const MINUTE_COL = 4;
-const WIND_DIR_COL = 5;
+const WIND_DIRECTION_COL = 5;
 const WIND_SPEED_COL = 6;
+
+const WAVE_HEIGHT_COL = 5;
+const SWELL_HEIGHT_COL = 6;
+const SWELL_PERIOD_COL = 7;
+const WIND_WAVE_HEIGHT_COL = 8;
+const WIND_WAVE_PERIOD_COL = 9;
+const SWELL_DIRECTION_COL = 10;
+const WIND_WAVE_DIRECTION_COL = 11;
+const STEEPNESS_COL = 12;
+
 const MAX_DATA_POINTS = 12;
 
-const ROW_LIMIT = 12;
-// Sync time is when wind data and swell data are lined up and synchronous
-// 40 because wind is updated every 10 mins, swell is updated every hour
-// at 40 they are in sync
+// Sync time is when wind and swell data are lined up and synchronous
+// 40 because wind is updated every 10 mins, swell is updated every hour at 40
 const SYNC_TIME = '40';
-// WIND and SWELL SKIP are how many positions we skip in order to get to the next necessary data
-const SWELL_SKIP = 14;
 
 app.use(cors());
 
@@ -58,7 +64,7 @@ app.get('/wind', async (req, res) => {
         day: table[i][DAY_COL],
         hour: table[i][HOUR_COL],
         minute: table[i][MINUTE_COL],
-        windDirection: table[i][WIND_DIR_COL],
+        windDirection: table[i][WIND_DIRECTION_COL],
         windSpeed: table[i][WIND_SPEED_COL],
       })
     }
@@ -108,76 +114,83 @@ app.get('/swell', async (req, res) => {
     const response = await axios(SWELL);
     const data = await response.data;
 
-    const table = data.split(' ').filter(function (entry) {
-      return entry.trim() != '';
-    });
+    const test = data.split('\n');
+    test.forEach((item, index, array) => {
+      let row = item.split(' ').filter((val) => {
+        return val.trim() != '';
+      });
+      array[index] = row;
+    })
 
-    // at index 32 in the array of data, that is the first row of data we want to start from
-    const index = 32;
-    const waveHeightIndex = index + 1;
-    const swellHeightIndex = index + 2;
-    const swellPeriodIndex = index + 3;
-    const windWaveHeightIndex = index + 4;
-    const windWavePeriodIndex = index + 5;
-    const swellDirectionIndex = index + 6;
-    const windWaveDirectionIndex = index + 7;
-    const steepnessIndex = index + 8;
+    const storedData = [];
     const swellData = [];
 
-    for (let i = 0; i < ROW_LIMIT; i++) {
-      let swellShift = i * SWELL_SKIP;
+    for (let i = 2; i < test.length; i++) {
+      storedData.push({
+        waveHeight: test[i][WAVE_HEIGHT_COL],
+        swellHeight: test[i][SWELL_HEIGHT_COL],
+        swellPeriod: test[i][SWELL_PERIOD_COL],
+        windWaveHeight: test[i][WIND_WAVE_HEIGHT_COL],
+        windWavePeriod: test[i][WIND_WAVE_PERIOD_COL],
+        swellDirection: test[i][SWELL_DIRECTION_COL],
+        windWaveDirection: test[i][WIND_WAVE_DIRECTION_COL],
+        steepness: test[i][STEEPNESS_COL]
+      })
+    }
+
+    for (let i = 0; i < MAX_DATA_POINTS; i++) {
       swellData.push({
         waveHeight: {
           dataLabel: 'Wave Height',
-          data: table[waveHeightIndex + swellShift],
+          data: storedData[i].waveHeight,
           unit: 'ft',
           className: 'height-card',
         },
         swellHeight: {
           dataLabel: 'Swell Height',
-          data: table[swellHeightIndex + swellShift],
+          data: storedData[i].swellHeight,
           unit: 'ft',
           className: 'height-card',
         },
         swellPeriod: {
           dataLabel: 'Swell Period',
-          data: table[swellPeriodIndex + swellShift],
+          data: storedData[i].swellPeriod,
           unit: 'secs',
           className: 'period-card',
         },
         windWaveHeight: {
           dataLabel: 'Wind Wave Height',
-          data: table[windWaveHeightIndex + swellShift],
+          data: storedData[i].windWaveHeight,
           unit: 'ft',
           className: 'height-card',
         },
         windWavePeriod: {
           dataLabel: 'Wind Wave Period',
-          data: table[windWavePeriodIndex + swellShift],
+          data: storedData[i].windWavePeriod,
           unit: 'secs',
           className: 'period-card',
         },
         swellDirection: {
           dataLabel: 'Swell Direction',
-          data: table[swellDirectionIndex + swellShift],
+          data: storedData[i].swellDirection,
           unit: '',
           className: 'direction-card',
         },
         windWaveDirection: {
           dataLabel: 'Wind Wave Direction',
-          data: table[windWaveDirectionIndex + swellShift],
+          data: storedData[i].windWaveDirection,
           unit: '',
           className: 'direction-card',
         },
         steepness: {
           dataLabel: 'Steepness',
-          data: table[steepnessIndex + swellShift],
+          data: storedData[i].steepness,
           unit: '',
           className: 'direction-card',
         },
-      });
-      // end for loop
+      })
     }
+
     res.send(swellData);
   } catch (error) {
     throw new Error(error);
