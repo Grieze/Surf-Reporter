@@ -17,6 +17,7 @@ const HOUR_COL = 3;
 const MINUTE_COL = 4;
 const WIND_DIR_COL = 5;
 const WIND_SPEED_COL = 6;
+const MAX_DATA_POINTS = 12;
 
 const ROW_LIMIT = 12;
 // Sync time is when wind data and swell data are lined up and synchronous
@@ -24,7 +25,6 @@ const ROW_LIMIT = 12;
 // at 40 they are in sync
 const SYNC_TIME = '40';
 // WIND and SWELL SKIP are how many positions we skip in order to get to the next necessary data
-const WIND_SKIP = 108;
 const SWELL_SKIP = 14;
 
 app.use(cors());
@@ -40,67 +40,61 @@ app.get('/wind', async (req, res) => {
     const response = await axios(WIND);
     const data = await response.data;
 
-    const table = data.split(' ').filter(function (entry) {
-      return entry.trim() != '';
-    });
-
-    const test = data.split('\n');
-    test.forEach((item, index, array) => {
+    const table = data.split('\n');
+    table.forEach((item, index, array) => {
       let row = item.split(' ').filter((val) => {
         return val.trim() != '';
       });
       array[index] = row;
     })
     const sortedData = [];
-    for (let i = 2; i < test.length; i++) {
+    const windData = [];
+    const matchedData = [];
+    
+    for (let i = 2; i < table.length; i++) {
       sortedData.push({
-        year: test[i][YEAR_COL],
-        month: test[i][MONTH_COL],
-        day: test[i][DAY_COL],
-        hour: test[i][HOUR_COL],
-        minute: test[i][MINUTE_COL],
-        windDirection: test[i][WIND_DIR_COL],
-        windSpeed: test[i][WIND_SPEED_COL],
+        year: table[i][YEAR_COL],
+        month: table[i][MONTH_COL],
+        day: table[i][DAY_COL],
+        hour: table[i][HOUR_COL],
+        minute: table[i][MINUTE_COL],
+        windDirection: table[i][WIND_DIR_COL],
+        windSpeed: table[i][WIND_SPEED_COL],
       })
     }
-    console.log(sortedData.slice(0,10));
-
-    const windData = [];
-
-    let windIndex = table.findIndex((val, i) => {
-      if (val == SYNC_TIME) {
-        return i;
+    
+    let index = 0;
+    let match = 0;
+    while (match < MAX_DATA_POINTS) {
+      if (sortedData[index].minute == SYNC_TIME) {
+        matchedData.push(sortedData[index]);
+        match++;
       }
-      i++;
-    });
+      index++;
+    }
 
-    const directionIndex = windIndex + 1;
-    const speedIndex = windIndex + 2;
-    const hourIndex = windIndex - 1;
-
-    for (let i = 0; i < ROW_LIMIT; i++) {
-      let shift = i * WIND_SKIP;
+    for (let i = 0; i < matchedData.length; i++) {
       windData.push({
         time: {
-          hour: table[hourIndex + shift],
-          min: table[windIndex + shift],
+          hour: matchedData[i].hour,
+          min: matchedData[i].minute,
           className: 'time',
           dataLabel: '',
           unit: '',
         },
         windDirection: {
           dataLabel: 'Wind Direction',
-          data: degToCompass(table[directionIndex + shift]),
+          data: degToCompass(matchedData[i].windDirection),
           unit: '',
           className: 'direction-card',
         },
         windSpeed: {
           dataLabel: 'Wind Speed',
-          data: metersToMiles(table[speedIndex + shift]),
+          data: metersToMiles(matchedData[i].windSpeed),
           unit: 'mph',
           className: 'wind-speed-card',
         },
-      });
+      })
     }
 
     return res.send(windData);
