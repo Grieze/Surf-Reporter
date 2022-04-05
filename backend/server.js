@@ -9,6 +9,15 @@ const message = 'Welcome to the beginning of the Surf Reporter API!';
 
 const WIND = 'https://www.ndbc.noaa.gov/data/realtime2/44065.txt';
 const SWELL = 'https://www.ndbc.noaa.gov/data/realtime2/44065.spec';
+
+const YEAR_COL = 0;
+const MONTH_COL = 1;
+const DAY_COL = 2;
+const HOUR_COL = 3;
+const MINUTE_COL = 4;
+const WIND_DIR_COL = 5;
+const WIND_SPEED_COL = 6;
+
 const ROW_LIMIT = 12;
 // Sync time is when wind data and swell data are lined up and synchronous
 // 40 because wind is updated every 10 mins, swell is updated every hour
@@ -34,6 +43,27 @@ app.get('/wind', async (req, res) => {
     const table = data.split(' ').filter(function (entry) {
       return entry.trim() != '';
     });
+
+    const test = data.split('\n');
+    test.forEach((item, index, array) => {
+      let row = item.split(' ').filter((val) => {
+        return val.trim() != '';
+      });
+      array[index] = row;
+    })
+    const sortedData = [];
+    for (let i = 2; i < test.length; i++) {
+      sortedData.push({
+        year: test[i][YEAR_COL],
+        month: test[i][MONTH_COL],
+        day: test[i][DAY_COL],
+        hour: test[i][HOUR_COL],
+        minute: test[i][MINUTE_COL],
+        windDirection: test[i][WIND_DIR_COL],
+        windSpeed: test[i][WIND_SPEED_COL],
+      })
+    }
+    console.log(sortedData.slice(0,10));
 
     const windData = [];
 
