@@ -53,56 +53,50 @@ app.get('/wind', async (req, res) => {
       });
       array[index] = row;
     })
+    
     const sortedData = [];
-    const windData = [];
     const matchedData = [];
-    
-    for (let i = 2; i < table.length; i++) {
-      sortedData.push({
-        year: table[i][YEAR_COL],
-        month: table[i][MONTH_COL],
-        day: table[i][DAY_COL],
-        hour: table[i][HOUR_COL],
-        minute: table[i][MINUTE_COL],
-        windDirection: table[i][WIND_DIRECTION_COL],
-        windSpeed: table[i][WIND_SPEED_COL],
-      })
-    }
-    
-    let index = 0;
-    let match = 0;
-    while (match < MAX_DATA_POINTS) {
-      if (sortedData[index].minute == SYNC_TIME) {
-        matchedData.push(sortedData[index]);
-        match++;
-      }
-      index++;
-    }
+    const windData = [];
 
-    for (let i = 0; i < matchedData.length; i++) {
+   
+    for (let i = 2; i < table.length; i++) {
+      let tempObj = {};
+      for (let j = 0; j < table[0].length; j++) {
+        tempObj[`${table[0][j]}`] = table[i][j];
+      }
+      sortedData.push(tempObj);
+    }
+    
+
+    sortedData.forEach((val,i) => {
+      if (sortedData[i]['mm'] == SYNC_TIME)
+        matchedData.push(sortedData[i]);
+    })
+
+    for (let i = 0; i < MAX_DATA_POINTS; i++) {
       windData.push({
         time: {
-          hour: matchedData[i].hour,
-          min: matchedData[i].minute,
+          hour: matchedData[i]['hh'],
+          min: matchedData[i]['mm'],
           className: 'time',
           dataLabel: '',
           unit: '',
         },
         windDirection: {
           dataLabel: 'Wind Direction',
-          data: degToCompass(matchedData[i].windDirection),
+          data: degToCompass(matchedData[i]['WDIR']),
           unit: '',
           className: 'direction-card',
         },
         windSpeed: {
           dataLabel: 'Wind Speed',
-          data: metersToMiles(matchedData[i].windSpeed),
+          data: metersToMiles(matchedData[i]['WSPD']),
           unit: 'mph',
           className: 'wind-speed-card',
         },
       })
-    }
-
+    };
+    
     return res.send(windData);
   } catch (error) {
     throw new Error(error);
