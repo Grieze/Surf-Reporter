@@ -22,10 +22,3 @@ const degToCompass = (num) => {
 };
 
 export default degToCompass;
-
-const utcToEst = (hour) => {
-  // UTC time is 4 hours ahead during daylight savings time
-  hour = parseInt(hour);
-  hour < 4 ? hour + 20 : hour - 4;
-  return hour.toString();
-}
