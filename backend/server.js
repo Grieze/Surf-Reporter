@@ -29,6 +29,7 @@ app.get('/wind', async (req, res) => {
     const response = await axios(WIND);
     const data = await response.data;
 
+    // take data and split it into a 2d table called table
     const table = data.split('\n');
     table.forEach((item, index, array) => {
       let row = item.split(' ').filter((val) => {
@@ -36,9 +37,8 @@ app.get('/wind', async (req, res) => {
       });
       array[index] = row;
     })
-    
-    const sortedData = [];
-    const matchedData = [];
+
+    const windTableObjectData = [];
     const windData = [];
 
     for (let i = 2; i < table.length; i++) {
@@ -46,33 +46,33 @@ app.get('/wind', async (req, res) => {
       for (let j = 0; j < table[0].length; j++) {
         tempObj[`${table[0][j]}`] = table[i][j];
       }
-      sortedData.push(tempObj);
+      windTableObjectData.push(tempObj);
     }
-    
 
-    sortedData.forEach((val,i) => {
-      if (sortedData[i]['mm'] == SYNC_TIME)
-        matchedData.push(sortedData[i]);
+    let filteredWindData = windTableObjectData.filter((obj) => {
+      return obj['mm'] == SYNC_TIME;
     })
+
+    console.log(filteredWindData.slice(0,10));
 
     for (let i = 0; i < MAX_DATA_POINTS; i++) {
       windData.push({
         time: {
-          hour: matchedData[i]['hh'],
-          min: matchedData[i]['mm'],
+          hour: filteredWindData[i]['hh'],
+          min: filteredWindData[i]['mm'],
           className: 'time',
           dataLabel: '',
           unit: '',
         },
         windDirection: {
           dataLabel: 'Wind Direction',
-          data: degToCompass(matchedData[i]['WDIR']),
+          data: degToCompass(filteredWindData[i]['WDIR']),
           unit: '',
           className: 'direction-card',
         },
         windSpeed: {
           dataLabel: 'Wind Speed',
-          data: metersToMiles(matchedData[i]['WSPD']),
+          data: metersToMiles(filteredWindData[i]['WSPD']),
           unit: 'mph',
           className: 'wind-speed-card',
         },
@@ -90,6 +90,7 @@ app.get('/swell', async (req, res) => {
     const response = await axios(SWELL);
     const data = await response.data;
 
+    // take data and split it into a 2d table called table
     const table = data.split('\n');
     table.forEach((item, index, array) => {
       let row = item.split(' ').filter((val) => {
@@ -98,7 +99,7 @@ app.get('/swell', async (req, res) => {
       array[index] = row;
     })
 
-    const sortedData = [];
+    const swellTableObjectData = [];
     const swellData = [];
 
     for (let i = 2; i < table.length; i++) {
@@ -106,56 +107,56 @@ app.get('/swell', async (req, res) => {
       for (let j = 0; j < table[0].length; j++) {
         tempObj[`${table[0][j]}`] = table[i][j];
       }
-      sortedData.push(tempObj);
+      swellTableObjectData.push(tempObj);
     }
 
     for (let i = 0; i < MAX_DATA_POINTS; i++) {
       swellData.push({
         waveHeight: {
           dataLabel: 'Wave Height',
-          data: sortedData[i]['WVHT'],
+          data: swellTableObjectData[i]['WVHT'],
           unit: 'ft',
           className: 'height-card',
         },
         swellHeight: {
           dataLabel: 'Swell Height',
-          data: sortedData[i]['SwH'],
+          data: swellTableObjectData[i]['SwH'],
           unit: 'ft',
           className: 'height-card',
         },
         swellPeriod: {
           dataLabel: 'Swell Period',
-          data: sortedData[i]['SwP'],
+          data: swellTableObjectData[i]['SwP'],
           unit: 'secs',
           className: 'period-card',
         },
         windWaveHeight: {
           dataLabel: 'Wind Wave Height',
-          data: sortedData[i]['WWH'],
+          data: swellTableObjectData[i]['WWH'],
           unit: 'ft',
           className: 'height-card',
         },
         windWavePeriod: {
           dataLabel: 'Wind Wave Period',
-          data: sortedData[i]['WWP'],
+          data: swellTableObjectData[i]['WWP'],
           unit: 'secs',
           className: 'period-card',
         },
         swellDirection: {
           dataLabel: 'Swell Direction',
-          data: sortedData[i]['SwD'],
+          data: swellTableObjectData[i]['SwD'],
           unit: '',
           className: 'direction-card',
         },
         windWaveDirection: {
           dataLabel: 'Wind Wave Direction',
-          data: sortedData[i]['WWD'],
+          data: swellTableObjectData[i]['WWD'],
           unit: '',
           className: 'direction-card',
         },
         steepness: {
           dataLabel: 'Steepness',
-          data: sortedData[i]['STEEPNESS'],
+          data: swellTableObjectData[i]['STEEPNESS'],
           unit: '',
           className: 'direction-card',
         },
